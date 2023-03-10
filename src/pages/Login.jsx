@@ -12,6 +12,8 @@ function Login() {
 
   const { authenticateUser } = useContext(AuthContext);
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -23,16 +25,14 @@ function Login() {
 
       localStorage.setItem("authToken", response.data.authToken);
 
-      authenticateUser();
+      await authenticateUser();
 
       console.log(response.data.authToken);
-      navigate("/projects");
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
   };
-
-  const navigate = useNavigate();
 
   return (
     <section>

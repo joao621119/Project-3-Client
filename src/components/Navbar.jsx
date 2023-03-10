@@ -11,12 +11,16 @@ function Navbar() {
       {loggedIn ? (
         <>
           <span>Hello {user.name}</span>
-          <Link to="/pets"> Projects</Link>
-          <Link to="/projects/new"> Add Projects</Link>
+          <Link to="/pets"> Pets</Link>
+          <Link to="/associations"> Associations</Link>
+          <Link to="/profile"> Profile</Link>
+
           <button onClick={logout}>Logout</button>
         </>
       ) : (
         <>
+          <Link to="/pets"> Pets</Link>
+          <Link to="/associations"> Associations</Link>
           <Link to="/signup"> Signup</Link>
           <Link to="/login"> Login</Link>
         </>

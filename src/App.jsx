@@ -1,15 +1,20 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 
+// Importing Components:
+import Private from "./components/Private";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+// Importing Pages:
 import Home from "./pages/Home";
-import Projects from "./pages/Projects";
-import ProjectDetails from "./pages/ProjectDetails";
-import AddProject from "./pages/AddProject";
-import EditProject from "./pages/EditProject";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
-import Private from "./components/Private";
+import UsersProfile from "./pages/UsersProfile";
+import Profiles from "./pages/Profiles";
+import Pets from "./pages/Pets";
+import PetDetails from "./pages/PetDetails";
+import Associations from "./pages/Associations";
+import AssociationDetails from "./pages/AssociationDetails";
 
 function App() {
   return (
@@ -17,23 +22,42 @@ function App() {
       <Navbar />
 
       <Routes>
+
         <Route path="/" element={<Home />} />
-        <Route
+
+        <Route path="/pets" element={<Pets/>}/>
+
+        <Route path="/pets/:id" element={<PetDetails/>}/>
+
+        <Route path="/associations" element={<Associations/>}/>
+
+        <Route path="/associations/:id" element={<AssociationDetails/>}/>
+
+        <Route path="/profile" element={<Private><UsersProfile/></Private>}/>
+
+        <Route path="/profile/:id" element={<Profiles/>}/>
+
+
+   {/* <Route
           path="/projects"
           element={
             <Private>
               <Projects />
+            
             </Private>
           }
-        />
+        /> */}
         {/* Same as Project details deconstruction: */}
-        <Route path="/projects/:id" element={<ProjectDetails />} />
-        <Route path="/projects/new" element={<AddProject />} />
+    {/*     <Route path="/projects/:id" element={<ProjectDetails />} /> */}
+ {/*        <Route path="/projects/new" element={<AddProject />} /> */}
         {/* It needs to be different than project details: */}
-        <Route path="/projects/edit/:id" element={<EditProject />} />
-        <Route path="/signup" element={<Signup />} /> {/* Change signup and login like projects for anon */}
+   {/*      <Route path="/projects/edit/:id" element={<EditProject />} /> */}
+        <Route path="/signup" element={<Signup />} />{" "}
+        {/* Change signup and login like projects for anon */}
         <Route path="/login" element={<Login />} />
       </Routes>
+
+      <Footer />
     </div>
   );
 }
