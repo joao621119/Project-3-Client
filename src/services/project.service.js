@@ -23,24 +23,28 @@ class ProjectService {
 
   // Here we can create the methods to connect to the API
 
-  // Get All Projects
-  getAllProjects = () => {
-    return this.api.get("/api/projects");
+  // Get All Pets
+  getAllPets = () => {
+    return this.api.get("/pets");
     // the line above is equivalent to:
-    //axios.get(`${import.meta.env.VITE_API_URL}/api/projects`)
+    //axios.get(`${import.meta.env.VITE_API_URL}/pets`)
   };
 
-  //Create a project
-  // body refers to the object with title and description
-  createProject = (body) => {
-    return this.api.post("/api/projects", body);
+  //Create a Pet
+  // body refers to the object
+  createPet = (body) => {
+    return this.api.post("/pets/add", body);
   };
   // Get by Id
-  getSingleProject = (id) => {
-    return this.api.get(`/api/projects/${id}`);
+  getSinglePet = (id) => {
+    return this.api.get(`/pets/${id}`);
   };
   // Update
-  // Delete
+  
+  // Delete by id
+  deleteSinglePet = (id) => {
+    return this.api.delete(`/pets/${id}`);
+  };
 }
 
 const projectService = new ProjectService();

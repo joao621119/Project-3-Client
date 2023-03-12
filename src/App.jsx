@@ -16,9 +16,13 @@ import PetDetails from "./pages/PetDetails";
 import Associations from "./pages/Associations";
 import AssociationDetails from "./pages/AssociationDetails";
 
+import { GlobalStyled } from "./components/styled/Global.styled";
+
 function App() {
   return (
     <div className="App">
+    <GlobalStyled />
+
       <Navbar />
 
       <Routes>
