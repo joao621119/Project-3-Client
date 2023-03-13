@@ -50,10 +50,8 @@ class PetService {
     return this.api.delete(`/pets/${id}`);
   };
 
-
-
-   // Get single profile
-   getSingleProfile = (id) => {
+  // Get single profile
+  getSingleProfile = (id) => {
     return this.api.get(`/profile/${id}`);
   };
 }

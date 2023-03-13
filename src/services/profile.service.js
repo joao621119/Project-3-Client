@@ -44,10 +44,6 @@ class ProfileService {
   deleteOwnProfile = (id) => {
     return this.api.delete(`/profile`);
   };
-
-
-
- 
 }
 
 const profileService = new ProfileService();

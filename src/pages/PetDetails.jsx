@@ -22,7 +22,7 @@ function PetDetails() {
   useEffect(() => {
     getPet();
   }, []);
-  console.log(pet)
+  console.log(pet);
 
   return (
     <div>
@@ -47,7 +47,9 @@ function PetDetails() {
             <Typography>
               About {pet.name}: {pet.description}
             </Typography>
-            <Link to={`/profile/${pet.owner[0]._id}`} key={pet.owner._id}><Typography>Owner: {pet.owner[0].name}</Typography></Link>
+            <Link to={`/profile/${pet.owner[0]._id}`} key={pet.owner._id}>
+              <Typography>Owner: {pet.owner[0].name}</Typography>
+            </Link>
           </div>
         </>
       )}

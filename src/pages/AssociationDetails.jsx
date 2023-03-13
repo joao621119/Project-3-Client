@@ -28,18 +28,26 @@ function associationDetails() {
       {association && (
         <>
           <div>
-          <div>
-            <img src={association.image} alt="" />
+            <div>
+              <img src={association.image} alt="" />
             </div>
             <h1>{association.name}</h1>
             <Typography variant="h3">Email: {association.email}</Typography>
-            <Typography variant="h3">Phone number: {association.phone}</Typography>
-            <Typography variant="h3">Social Media: {association.socialMedia}</Typography>
-            <Typography variant="h3">Location: {association.location}</Typography>
-            <Typography variant="h3">Provided services: {association.service}</Typography>
-            <Typography variant="h3">About {association.name}: {association.description}</Typography>
-
-
+            <Typography variant="h3">
+              Phone number: {association.phone}
+            </Typography>
+            <Typography variant="h3">
+              Social Media: {association.socialMedia}
+            </Typography>
+            <Typography variant="h3">
+              Location: {association.location}
+            </Typography>
+            <Typography variant="h3">
+              Provided services: {association.service}
+            </Typography>
+            <Typography variant="h3">
+              About {association.name}: {association.description}
+            </Typography>
           </div>
         </>
       )}

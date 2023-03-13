@@ -19,36 +19,33 @@ import AssociationDetails from "./pages/AssociationDetails";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 
-
 import { GlobalStyled } from "./components/styled/Global.styled";
 
 function App() {
   return (
     <div className="App">
-    <GlobalStyled />
+      <GlobalStyled />
 
-    <ToastContainer/>
+      <ToastContainer />
 
       <Navbar />
 
       <Routes>
-
         <Route path="/" element={<Home />} />
-
-        <Route path="/pets" element={<Pets/>}/>
-
-        <Route path="/pets/:id" element={<PetDetails/>}/>
-
-        <Route path="/associations" element={<Associations/>}/>
-
-        <Route path="/associations/:id" element={<AssociationDetails/>}/>
-
-        <Route path="/profile" element={<Private><UsersProfile/></Private>}/>
-
-        <Route path="/profile/:id" element={<Profile/>}/>
-
-
-   {/* <Route
+        <Route path="/pets" element={<Pets />} />
+        <Route path="/pets/:id" element={<PetDetails />} />
+        <Route path="/associations" element={<Associations />} />
+        <Route path="/associations/:id" element={<AssociationDetails />} />
+        <Route
+          path="/profile"
+          element={
+            <Private>
+              <UsersProfile />
+            </Private>
+          }
+        />
+        <Route path="/profile/:id" element={<Profile />} />
+        {/* <Route
           path="/projects"
           element={
             <Private>
@@ -58,10 +55,10 @@ function App() {
           }
         /> */}
         {/* Same as Project details deconstruction: */}
-    {/*     <Route path="/projects/:id" element={<ProjectDetails />} /> */}
- {/*        <Route path="/projects/new" element={<AddProject />} /> */}
+        {/*     <Route path="/projects/:id" element={<ProjectDetails />} /> */}
+        {/*        <Route path="/projects/new" element={<AddProject />} /> */}
         {/* It needs to be different than project details: */}
-   {/*      <Route path="/projects/edit/:id" element={<EditProject />} /> */}
+        {/*      <Route path="/projects/edit/:id" element={<EditProject />} /> */}
         <Route path="/signup" element={<Signup />} />{" "}
         {/* Change signup and login like projects for anon */}
         <Route path="/login" element={<Login />} />
