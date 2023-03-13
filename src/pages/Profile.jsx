@@ -1,6 +1,6 @@
-/* import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import profileService from "../services/profile.service";
 import { StyledSection } from "../components/styled/Section.styled";
 
@@ -20,9 +20,9 @@ function Profile() {
 
   const getProfile = async () => {
     try {
-      const response = await profileService.getSinglePet(id);
-      setPet(response.data);
-      console.log(response.data)
+      const response = await profileService.getSingleProfile(id);
+      setProfile(response.data);
+      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -38,24 +38,24 @@ function Profile() {
         <>
           <div>
             <img src={profile.image} alt="Profile Image" />
-          
-          <h1>{profile.name}</h1>
-          <Typography>Gender: {profile.gender}</Typography>
-          <Typography>Age: {profile.age}</Typography>
-          <Typography>Location: {profile.location}</Typography>
-          <Typography>About {profile.name}: {profile.description}</Typography>
-          </div>
 
- <Typography>Owner: {pet.owner}</Typography>      </>
+            <h1>{profile.name}</h1>
+            <Typography>Gender:{profile.gender}</Typography>
+            <Typography>Age: {profile.age}</Typography>
+            <Typography>Location: {profile.location}</Typography>
+            <Typography>
+              About {profile.name}: {profile.description}
+            </Typography>
+          </div>
+        </>
       )}
-      
     </div>
   );
 }
 
 export default Profile;
-*/
-import React from 'react'
+
+/* import React from 'react'
 
 function Profile() {
   return (
@@ -63,4 +63,4 @@ function Profile() {
   )
 }
 
-export default Profile
+export default Profile */

@@ -10,7 +10,7 @@ import Home from "./pages/Home";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import UsersProfile from "./pages/UsersProfile";
-import Profiles from "./pages/Profile";
+import Profile from "./pages/Profile";
 import Pets from "./pages/Pets";
 import PetDetails from "./pages/PetDetails";
 import Associations from "./pages/Associations";
@@ -45,7 +45,7 @@ function App() {
 
         <Route path="/profile" element={<Private><UsersProfile/></Private>}/>
 
-        <Route path="/profile/:id" element={<Profiles/>}/>
+        <Route path="/profile/:id" element={<Profile/>}/>
 
 
    {/* <Route
