@@ -1,6 +1,6 @@
 import axios from "axios";
 
-class PetService {
+class AssociationsService {
   constructor() {
     this.api = axios.create({
       baseURL: import.meta.env.VITE_API_URL || "http://localhost:5005",
@@ -23,41 +23,19 @@ class PetService {
 
   // Here we can create the methods to connect to the API
 
-  // Get All Pets
-  getAllPets = () => {
-    return this.api.get("/pets");
+  // Get All Profiles
+  getAllAssociations = () => {
+    return this.api.get("/associations");
     // the line above is equivalent to:
     //axios.get(`${import.meta.env.VITE_API_URL}/pets`)
   };
 
-  //Create a pet
-  // body refers to the object
-  createPet = (body) => {
-    return this.api.post("/pets/add", body);
-  };
-  // Get single pet
-  getSinglePet = (id) => {
-    return this.api.get(`/pets/${id}`);
-  };
-
-  // Edit a pet
-  editSinglePet = (id, body) => {
-    return this.api.put(`/pets/${id}`, body);
-  };
-
-  // Delete a pet
-  deletePet = (id) => {
-    return this.api.delete(`/pets/${id}`);
-  };
-
-
-
-   // Get single profile
-   getSingleProfile = (id) => {
-    return this.api.get(`/profile/${id}`);
+  // Get single associations
+  getSingleAssociation = (id) => {
+    return this.api.get(`/associations/${id}`);
   };
 }
 
-const petService = new PetService();
+const associationsService = new AssociationsService();
 
-export default petService;
+export default associationsService;

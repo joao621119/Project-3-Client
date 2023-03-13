@@ -1,13 +1,15 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import { Slide, Zoom, Flip, Bounce } from "react-toastify";
 import { AuthContext } from "../context/auth.context";
 
 import { StyledForm } from "../components/styled/Form.styled";
 import { StyledButton } from "../components/styled/Button.styled";
 import { StyledSection } from "../components/styled/Section.styled";
+
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 
 import { Container, Typography } from "@mui/material";
 import { height } from "@mui/system";
@@ -45,8 +47,8 @@ function Login() {
       };
 
       console.log(response.data.authToken);
-      notify();
       navigate("/");
+      notify();
     } catch (error) {
       console.log(error);
     }

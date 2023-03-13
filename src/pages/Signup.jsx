@@ -6,6 +6,11 @@ import { StyledForm } from "../components/styled/Form.styled";
 import { StyledButton } from "../components/styled/Button.styled";
 import { StyledSection } from "../components/styled/Section.styled";
 
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
+import { Slide, Zoom, Flip, Bounce } from "react-toastify";
+
+
 import {
   Container,
   TextareaAutosize,
@@ -44,7 +49,7 @@ function Signup() {
       );
 
       const notify = () => {
-        toast.success("Login successful!", {
+        toast.success("Sign up successful!", {
           position: toast.POSITION.TOP_CENTER,
           icon: "✅",
           transition: Zoom,
@@ -52,8 +57,8 @@ function Signup() {
       };
 
       console.log(response.data);
+      navigate("/");
       notify();
-      navigate("/login");
     } catch (error) {
       console.log(error);
     }
