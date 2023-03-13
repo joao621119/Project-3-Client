@@ -1,6 +1,6 @@
 import axios from "axios";
 
-class ProjectService {
+class PetService {
   constructor() {
     this.api = axios.create({
       baseURL: import.meta.env.VITE_API_URL || "http://localhost:5005",
@@ -47,6 +47,6 @@ class ProjectService {
   };
 }
 
-const projectService = new ProjectService();
+const petService = new PetService();
 
-export default projectService;
+export default petService;

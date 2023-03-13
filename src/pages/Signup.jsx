@@ -32,6 +32,8 @@ function Signup() {
   const handleDescription = (e) => setDescription(e.target.value);
   const handleUserType = (e) => setUserType(e.target.value);
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -40,14 +42,22 @@ function Signup() {
         `${import.meta.env.VITE_API_URL}/auth/signup`,
         { name, email, password, description, userType }
       );
+
+      const notify = () => {
+        toast.success("Login successful!", {
+          position: toast.POSITION.TOP_CENTER,
+          icon: "✅",
+          transition: Zoom,
+        });
+      };
+
       console.log(response.data);
+      notify();
       navigate("/login");
     } catch (error) {
       console.log(error);
     }
   };
-
-  const navigate = useNavigate();
 
   return (
     <Container>

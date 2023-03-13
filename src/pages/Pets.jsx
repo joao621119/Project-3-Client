@@ -1,95 +1,52 @@
-/* import axios from "axios";
-import React, { useState, useEffect } from "react";
+/* import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
+import petService from "../services/pet.service";
+// css
 
-// Get from API
+// components
 
 function Pets() {
-  const [pets, setPets] = useState([]); // Get all
-  const [query, setQuery] = useState(""); // Search
-  const [searchResult, setSearchResult] = useState(null);
+  const [pets, setPets] = useState([]);
 
-  const getFromApi = async () => {
+  const getPets = async () => {
     try {
-      const response = await axios.get(
-        `https://ih-beers-api2.herokuapp.com/beers`
-      );
-      setPets(response.data);
+      const response = await petService.getAllProjects()
+
+      console.log(response.data);
+      setProjects(response.data);
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    getFromApi();
+    getProjects();
   }, []);
-  console.log(beers);
-
-  // Search on API
-
-  const handleSearch = (e) => setQuery(e.target.value);
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.get(
-        `https://ih-beers-api2.herokuapp.com/beers/search?q=${query}`
-      );
-      setSearchResult(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   return (
-    <div className="card">
-      <Navbar />
-
-      <form onChange={handleSubmit}>
-        <label htmlFor="query">Search Pet</label>
-        <input
-          type="text"
-          name="query"
-          value={query}
-          onChange={handleSearch}
-        ></input>
-      </form>
-
-      <h1>All Pets</h1>
-
-      {searchResult &&
-        searchResult.map((beer) => {
-          return (
-            <div>
-              <img className="images" src={pet.image_url} alt="PetImage" />
-              <p>{pet.name}</p>
-              <p>{pet.tagline}</p>
-              <p>{pet.contributed_by}</p>
-
-              <Link to={`/${pet._id}`}>
-                <p>Go to Details</p>
-              </Link>
-            </div>
-          );
-        })}
-
-      {pets.length &&
-        !searchResult &&
-        pets.map((pet) => {
-          return (
-            <>
-              <img className="images" src={pet.image_url} alt="petImage" />
-              <p>{pet.name}</p>
-              <p>{pet.tagline}</p>
-              <p>{pet.contributed_by}</p>
-
-              <Link to={`/${pet._id}`}>
-                <p>Go to Details</p>
-              </Link>
-            </>
-          );
-        })}
-    </div>
+    <section>
+      <h1>Projects</h1>
+      {projects.map((project) => {
+        return (
+          // Assign it a key otherwise react will complain if you map ovr an array without a key
+          <Link to={`/projects/${project._id}`} key={project._id}>
+            <h3>{project.title}</h3>
+          </Link>
+        );
+      })}
+    </section>
   );
 }
 
-export default Pets; */
+export default Projects; */
+
+import React from 'react'
+
+function Pets() {
+  return (
+    <div>Pets</div>
+  )
+}
+
+export default Pets
