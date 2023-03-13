@@ -5,7 +5,7 @@ import { AuthContext } from "../context/auth.context";
 import styled from "styled-components";
 import { StyledButton } from "./styled/Button.styled";
 import { StyledNavBar } from "./styled/Navbar.styled";
-import { Container } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import PetsIcon from "@mui/icons-material/Pets";
 
 function Navbar() {
@@ -16,20 +16,26 @@ function Navbar() {
         {/* If the user is logged in do the first option. If the logged in is false (after the colon :) */}
         {loggedIn ? (
           <>
-          <Link to="/">
+            <Link to="/">
               <PetsIcon sx={{ fontSize: "3rem", color: "#F79489" }} />
             </Link>
-            <span>Hello {user.name}</span>
+            <Typography variant="h5">Hello {user.name}</Typography>
             <Link to="/pets">
-              <StyledButton>Pets</StyledButton>
+              <StyledButton>
+                <Typography variant="h5">Pets</Typography>
+              </StyledButton>
             </Link>
 
             <Link to="/associations">
-              <StyledButton>Associations</StyledButton>
+              <StyledButton>
+                <Typography variant="h5">Associations</Typography>
+              </StyledButton>
             </Link>
 
             <Link to="/profile">
-              <StyledButton>Profile</StyledButton>
+              <StyledButton>
+                <Typography variant="h5">Profile</Typography>
+              </StyledButton>
             </Link>
 
             <StyledButton onClick={logout} primary={true}>
@@ -42,16 +48,24 @@ function Navbar() {
               <PetsIcon sx={{ fontSize: "3rem", color: "#F79489" }} />
             </Link>
             <Link to="/pets">
-              <StyledButton>Pets</StyledButton>
+              <StyledButton>
+                <Typography variant="h5">Pets</Typography>
+              </StyledButton>
             </Link>
             <Link to="/associations">
-              <StyledButton>Associations</StyledButton>
+              <StyledButton>
+                <Typography variant="h5">Associations</Typography>
+              </StyledButton>
             </Link>
             <Link to="/signup">
-              <StyledButton primary={true}>Signup</StyledButton>
+              <StyledButton primary={true}>
+                <Typography variant="h5">Signup</Typography>
+              </StyledButton>
             </Link>
             <Link to="/login">
-              <StyledButton primary={true}>Login</StyledButton>
+              <StyledButton primary={true}>
+                <Typography variant="h5">Login</Typography>
+              </StyledButton>
             </Link>
           </>
         )}

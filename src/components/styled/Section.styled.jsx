@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const StyledSection = styled.section`
-  height: 85vh;
+  margin-top: 2vh;
+  height: 100vh;
   background-image: linear-gradient(#fadcd9, #f9f1f0);
 
   display: flex;
@@ -9,15 +10,12 @@ export const StyledSection = styled.section`
   align-items: center;
   justify-content: center;
 
-  h1 {
-    font-size: 5rem;
-  }
-
   p {
-    font-size: 2rem;
+    font-size: 1.6rem;
+    margin: 0;
   }
 
   a {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 `;

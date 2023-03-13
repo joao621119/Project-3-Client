@@ -2,17 +2,14 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-
+import { Slide, Zoom, Flip, Bounce } from "react-toastify";
 import { AuthContext } from "../context/auth.context";
-
-import loadingSpinner from "../assets/images/spinner.gif";
 
 import { StyledForm } from "../components/styled/Form.styled";
 import { StyledButton } from "../components/styled/Button.styled";
 import { StyledSection } from "../components/styled/Section.styled";
-import { Slide, Zoom, Flip, Bounce } from "react-toastify";
 
-import { Container } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import { height } from "@mui/system";
 
 function Login() {
@@ -58,9 +55,13 @@ function Login() {
   return (
     <Container sx={{ height: "100vh" }}>
       <StyledSection>
-      <h1>Log in</h1>
+        <Typography variant="h1" gutterBottom>
+          Log in
+        </Typography>
         <StyledForm onSubmit={handleSubmit}>
-          <label htmlFor="email"> Email</label>
+          <label htmlFor="email">
+            <Typography variant="h3">Email</Typography>
+          </label>
           <input
             type="email"
             name="email"
@@ -69,7 +70,9 @@ function Login() {
             onChange={handleEmail}
           />
 
-          <label htmlFor="password"> Password</label>
+          <label htmlFor="password">
+            <Typography variant="h3">Password</Typography>
+          </label>
           <input
             type="password"
             name="password"
@@ -78,9 +81,11 @@ function Login() {
             onChange={handlePassword}
           />
 
-          <StyledButton type="submit" primary={true}>Login</StyledButton>
+          <StyledButton type="submit" primary={true}>
+            <Typography variant="h5">Login</Typography>
+          </StyledButton>
         </StyledForm>
-        <p>Don't have an account?</p>
+        <Typography>Don't have an account?</Typography>
         <Link to="/signup">Sign up</Link>
       </StyledSection>
     </Container>
