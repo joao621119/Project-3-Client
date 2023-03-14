@@ -4,7 +4,7 @@ import PetsIcon from "@mui/icons-material/Pets";
 
 function Footer() {
   return (
-    <footer>
+    <footer id="footertag">
       <div>
         <p>About Pawesome</p>
         <p>Pawesome is a React Web Application destined for people looking to adopt and give pets up for adoption.

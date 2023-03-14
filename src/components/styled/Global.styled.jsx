@@ -26,4 +26,16 @@ body{
     background-size: cover;
     height: 500px
 }
+
+#footertag{
+    display: flex;
+    color: white;
+    font-size: 2em;
+    justify-content: space-between;
+}
+
+#footertag > div{
+    align-items: center;
+    width: 250px;
+}
 `;
