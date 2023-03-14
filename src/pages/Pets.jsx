@@ -34,7 +34,7 @@ function Pets() {
 
   const searchPets = (query) => {
     const filteredPets = pets.filter((pet) =>
-      pet.name.toLowerCase().includes(query.toLowerCase())
+      pet.location.toLowerCase().includes(query.toLowerCase())
     );
     setShowPet(filteredPets);
   };
@@ -64,7 +64,7 @@ function Pets() {
                         sx={{
                           objectFit: "cover",
                           position: "relative",
-                          borderRadius: "16px 16px 0 0"
+                          borderRadius: "16px 16px 0 0",
                         }}
                       />
                       <CardContent
@@ -81,12 +81,29 @@ function Pets() {
                         <Typography gutterBottom variant="h5" component="div">
                           {pet.name}
                         </Typography>
+                    
                         <Typography
                           gutterBottom
                           variant="body1"
                           component="div"
                         >
-                          {pet.species} - {pet.breed}
+                          {pet.location}
+                        </Typography>
+                        {pet.species &&
+                        <Typography
+                          gutterBottom
+                          variant="body1"
+                          component="div"
+                        >
+                        🐕
+                        </Typography>
+                        }
+                        <Typography
+                          gutterBottom
+                          variant="body1"
+                          component="div"
+                        >
+                          {pet.breed}
                         </Typography>
                       </CardContent>
                     </CardActionArea>

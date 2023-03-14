@@ -51,7 +51,7 @@ function AssociationsList() {
           {itemList.map((item) => {
             return (
               <Grid item xs={12} sm={6} md={4} key={item._id}>
-                <Link to={`/items/${item._id}`}>
+                <Link to={`/associations/${item._id}`}>
                   <Card sx={{ borderRadius: "16px" }}>
                     <CardActionArea>
                       <CardMedia
