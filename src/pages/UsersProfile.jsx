@@ -2,6 +2,8 @@ import React, { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../context/auth.context";
 import profileService from "../services/profile.service";
 import { Typography } from "@mui/material";
+import { StyledButton } from "../components/styled/Button.styled";
+import { Link } from "react-router-dom";
 
 function UsersProfile() {
   const { user } = useContext(AuthContext);
@@ -11,7 +13,6 @@ function UsersProfile() {
     try {
       const response = await profileService.getSingleProfile(user._id);
       setProfile(response.data);
-      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -25,21 +26,38 @@ function UsersProfile() {
     <div>
       {profile && (
         <>
-        <div>
-            <img src={profile.image} alt="Profile Image" />
+          <section>
 
-            <Typography variant="h3">{profile.name}</Typography>
-            <Typography variant="h3">Gender:{profile.gender}</Typography>
-            <Typography variant="h3">Age: {profile.age}</Typography>
-            <Typography variant="h3">Location: {profile.location}</Typography>
-            <Typography variant="h3">
-              About {profile.name}: {profile.description}
-            </Typography>
+          <div>
+            <img src={profile.image} alt="Profile Image" />
           </div>
+
+          <div>
+            <Link to={`/profile/edit/${profile._id}`}>
+              <StyledButton primary={true}>
+                <Typography variant="h4">Edit Profile</Typography>
+              </StyledButton>
+            </Link>
+          </div>
+
+          <div>
+            <Typography variant="h4">{profile.name}</Typography>
+            <Typography variant="h4">Gender:{profile.gender}</Typography>
+            <Typography variant="h4">Age: {profile.age}</Typography>
+            <Typography variant="h4">Location: {profile.location}</Typography>
+            <Typography variant="h4">About {profile.description}</Typography>
+            </div>
+
+            <Typography variant="h4">{profile.interestedInPets[0]}</Typography>
+          </section>
         </>
       )}
     </div>
   );
 }
 
+<<<<<<< HEAD
 export default UsersProfile;
+=======
+export default UsersProfile
+>>>>>>> 584d9556653b1c69c91600f09ff7c9858fd58d03

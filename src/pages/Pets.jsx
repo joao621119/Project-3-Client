@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import petService from "../services/pet.service";
 import { StyledSection } from "../components/styled/Section.styled";
 import { PetListSection } from "../components/styled/PetList.styled";
+import { StyledButton } from "../components/styled/Button.styled";
 import SearchPets from "../components/SearchPets";
 
 import Card from "@mui/material/Card";
@@ -20,8 +21,6 @@ function Pets() {
   const getPets = async () => {
     try {
       const response = await petService.getAllPets();
-
-      console.log(response.data);
       setPets(response.data);
     } catch (error) {
       console.log(error);
@@ -47,6 +46,8 @@ function Pets() {
       <Typography variant="h1" gutterBottom>
         Pets
       </Typography>
+     <Link to="/pets/add"><StyledButton primary={true}><Typography>Add a pet</Typography></StyledButton></Link>
+
       <PetListSection>
         <Grid container spacing={2}>
           {petList.map((pet) => {

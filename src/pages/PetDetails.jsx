@@ -13,7 +13,6 @@ function PetDetails() {
     try {
       const response = await petService.getSinglePet(id);
       setPet(response.data);
-      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -22,7 +21,6 @@ function PetDetails() {
   useEffect(() => {
     getPet();
   }, []);
-  console.log(pet);
 
   return (
     <div>
@@ -58,13 +56,3 @@ function PetDetails() {
 }
 
 export default PetDetails;
-
-/* import React from 'react'
-
-function PetDetails() {
-  return (
-    <div>PetDetails</div>
-  )
-}
-
-export default PetDetails */

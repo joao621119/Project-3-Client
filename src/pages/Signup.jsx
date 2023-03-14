@@ -54,9 +54,7 @@ function Signup() {
           transition: Zoom,
         });
       };
-
-      console.log(response.data);
-      navigate("/");
+      navigate("/login");
       notify();
     } catch (error) {
       console.log(error);

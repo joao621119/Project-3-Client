@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
+
 import profileService from "../services/profile.service";
-import { StyledSection } from "../components/styled/Section.styled";
 
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
-// css
+import Typography from "@mui/material/Typography";
+import { StyledSection } from "../components/styled/Section.styled";
 
-// components
 
 function Profile() {
   const [profile, setProfile] = useState(null);
@@ -22,7 +21,6 @@ function Profile() {
     try {
       const response = await profileService.getSingleProfile(id);
       setProfile(response.data);
-      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -33,39 +31,36 @@ function Profile() {
   }, []);
 
   return (
-    <div>
+
+    <StyledSection>
       {profile && (
         <>
+          
           <div>
             <img src={profile.image} alt="Profile Image" />
+          </div>
 
+          <div>
             <Typography variant="h3">{profile.name}</Typography>
           
-            {profile.gender && (
+            {profile.gender && 
               <Typography gutterBottom variant="body1" component="div">
-                Female
+               {profile.gender}
               </Typography>
-            )}
+            }
             <Typography variant="h3">Age: {profile.age}</Typography>
+
             <Typography variant="h3">Location: {profile.location}</Typography>
+
+            </div>
             <Typography variant="h3">
-              About {profile.name}: {profile.description}
+             Pets for adoption: {profile.petsForAdoption[0]}
             </Typography>
-          </div>
+        
         </>
       )}
-    </div>
+    </StyledSection>
   );
 }
 
 export default Profile;
-
-/* import React from 'react'
-
-function Profile() {
-  return (
-    <div>Profile</div>
-  )
-}
-
-export default Profile */

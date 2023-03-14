@@ -13,7 +13,6 @@ function associationDetails() {
     try {
       const response = await associationService.getSingleAssociation(id);
       setAssociation(response.data);
-      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
