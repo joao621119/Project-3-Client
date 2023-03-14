@@ -45,8 +45,6 @@ function Login() {
           transition: Zoom,
         });
       };
-
-      console.log(response.data.authToken);
       navigate("/");
       notify();
     } catch (error) {

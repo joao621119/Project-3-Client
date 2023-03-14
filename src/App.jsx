@@ -15,11 +15,13 @@ import Pets from "./pages/Pets";
 import PetDetails from "./pages/PetDetails";
 import Associations from "./pages/Associations";
 import AssociationDetails from "./pages/AssociationDetails";
-
+import EditProfile from "./pages/EditProfile";
+import EditPet from "./pages/EditPet";
+import AddPet from "./pages/AddPet";
+//Styles:
+import { GlobalStyled } from "./components/styled/Global.styled";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
-
-import { GlobalStyled } from "./components/styled/Global.styled";
 
 function App() {
   return (
@@ -31,11 +33,17 @@ function App() {
       <Navbar />
 
       <Routes>
+
         <Route path="/" element={<Home />} />
         <Route path="/pets" element={<Pets />} />
         <Route path="/pets/:id" element={<PetDetails />} />
         <Route path="/associations" element={<Associations />} />
         <Route path="/associations/:id" element={<AssociationDetails />} />
+        <Route path="/profile/:id" element={<Profile />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />{" "}
+
+        {/* Private routes: */}
         <Route
           path="/profile"
           element={
@@ -44,24 +52,17 @@ function App() {
             </Private>
           }
         />
-        <Route path="/profile/:id" element={<Profile />} />
-        {/* <Route
-          path="/projects"
+        <Route
+          path="/profile/edit/:id"
           element={
             <Private>
-              <Projects />
-            
+              <EditProfile />
             </Private>
           }
-        /> */}
-        {/* Same as Project details deconstruction: */}
-        {/*     <Route path="/projects/:id" element={<ProjectDetails />} /> */}
-        {/*        <Route path="/projects/new" element={<AddProject />} /> */}
-        {/* It needs to be different than project details: */}
-        {/*      <Route path="/projects/edit/:id" element={<EditProject />} /> */}
-        <Route path="/signup" element={<Signup />} />{" "}
-        {/* Change signup and login like projects for anon */}
-        <Route path="/login" element={<Login />} />
+        />
+        <Route path="/pets/edit/:id" element={<EditPet />} />
+        <Route path="/pets/add" element={<AddPet />} />
+        
       </Routes>
 
       <Footer />

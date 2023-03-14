@@ -19,8 +19,6 @@ function AssociationsList() {
   const getAssociations = async () => {
     try {
       const response = await associationsService.getAllAssociations();
-
-      console.log(response.data);
       setItems(response.data);
     } catch (error) {
       console.log(error);
