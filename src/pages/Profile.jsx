@@ -40,7 +40,12 @@ function Profile() {
             <img src={profile.image} alt="Profile Image" />
 
             <Typography variant="h3">{profile.name}</Typography>
-            <Typography variant="h3">Gender:{profile.gender}</Typography>
+          
+            {profile.gender && (
+              <Typography gutterBottom variant="body1" component="div">
+                Female
+              </Typography>
+            )}
             <Typography variant="h3">Age: {profile.age}</Typography>
             <Typography variant="h3">Location: {profile.location}</Typography>
             <Typography variant="h3">
