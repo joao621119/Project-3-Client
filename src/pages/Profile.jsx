@@ -39,11 +39,11 @@ function Profile() {
           <div>
             <img src={profile.image} alt="Profile Image" />
 
-            <h1>{profile.name}</h1>
-            <Typography>Gender:{profile.gender}</Typography>
-            <Typography>Age: {profile.age}</Typography>
-            <Typography>Location: {profile.location}</Typography>
-            <Typography>
+            <Typography variant="h3">{profile.name}</Typography>
+            <Typography variant="h3">Gender:{profile.gender}</Typography>
+            <Typography variant="h3">Age: {profile.age}</Typography>
+            <Typography variant="h3">Location: {profile.location}</Typography>
+            <Typography variant="h3">
               About {profile.name}: {profile.description}
             </Typography>
           </div>
