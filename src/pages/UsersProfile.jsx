@@ -56,8 +56,4 @@ function UsersProfile() {
   );
 }
 
-<<<<<<< HEAD
-export default UsersProfile;
-=======
 export default UsersProfile
->>>>>>> 584d9556653b1c69c91600f09ff7c9858fd58d03
