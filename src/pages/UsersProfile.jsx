@@ -25,9 +25,17 @@ function UsersProfile() {
     <div>
       {profile && (
         <>
-          <Typography>{profile.name}</Typography>
+        <div>
+            <img src={profile.image} alt="Profile Image" />
 
-          <img src={profile.image} alt="profile image" />
+            <Typography variant="h3">{profile.name}</Typography>
+            <Typography variant="h3">Gender:{profile.gender}</Typography>
+            <Typography variant="h3">Age: {profile.age}</Typography>
+            <Typography variant="h3">Location: {profile.location}</Typography>
+            <Typography variant="h3">
+              About {profile.name}: {profile.description}
+            </Typography>
+          </div>
         </>
       )}
     </div>
