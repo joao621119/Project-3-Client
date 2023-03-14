@@ -5,49 +5,93 @@ import petService from "../services/pet.service";
 import { StyledForm } from "../components/styled/Form.styled";
 import { StyledButton } from "../components/styled/Button.styled";
 import {
-    Container,
-    TextareaAutosize,
-    Typography,
-    Box,
-    FormControl,
-    FormLabel,
-    FormControlLabel,
-    RadioGroup,
-    Radio,
-  } from "@mui/material";
+  Container,
+  TextareaAutosize,
+  Typography,
+  Box,
+  FormControl,
+  FormLabel,
+  FormControlLabel,
+  RadioGroup,
+  Radio,
+} from "@mui/material";
 
 function AddPet() {
-    const [name, setName] = useState("");
-    const [species, setSpecies] = useState("");
-    const [breed, setBreed] = useState("");
-    const [age, setAge] = useState(null);
-    const [birthDate, setBirthDate] = useState("");
-    const [gender, setGender] = useState(true);
-    const [sterilized, setSterilized] = useState(true);
-    const [weight, setWeight] = useState(null);
-    const [location, setLocation] = useState("");
-    const [description, setDescription] = useState("");
-    const [image, setImage] = useState("");
+  const [name, setName] = useState("");
+  const [species, setSpecies] = useState("");
+  const [breed, setBreed] = useState("");
+  const [age, setAge] = useState(null);
+  const [birthDate, setBirthDate] = useState("");
+  const [gender, setGender] = useState(true);
+  const [sterilized, setSterilized] = useState(true);
+  const [weight, setWeight] = useState(null);
+  const [location, setLocation] = useState("");
+  const [description, setDescription] = useState("");
+  const [image, setImage] = useState("");
 
-    const handleName = (e) => setName(e.target.value);
-    const handleSpecies = (e) => setSpecies(e.target.value);
-    const handleBreed = (e) => setBreed(e.target.value);
-    const handleAge = (e) => setAge(e.target.value);
-    const handleBirthDate = (e) => setBirthDate(e.target.value);
-    const handleGender = (e) => setGender(e.target.value);
-    const handleSterilized = (e) => setSterilized(e.target.value);
-    const handleWeight = (e) => setWeight(e.target.value);
-    const handleLocation = (e) => setLocation(e.target.value);
-    const handleDescription = (e) => setDescription(e.target.value);
-    const handleImage = (e) => setImage(e.target.value);
+  const handleName = (e) => setName(e.target.value);
+  const handleSpecies = (e) => setSpecies(e.target.value);
+  const handleBreed = (e) => setBreed(e.target.value);
+  const handleAge = (e) => setAge(e.target.value);
+  const handleBirthDate = (e) => setBirthDate(e.target.value);
+  const handleGender = (e) => setGender(e.target.value);
+  const handleSterilized = (e) => setSterilized(e.target.value);
+  const handleWeight = (e) => setWeight(e.target.value);
+  const handleLocation = (e) => setLocation(e.target.value);
+  const handleDescription = (e) => setDescription(e.target.value);
+  /* const handleImage = (e) => setImage(e.target.value); */
 
   const navigate = useNavigate();
+  /*   const storedToken = localStorage.getItem("authToken"); */
+  /* const handleFileUpload = (e) => {
+    const uploadData = new FormData();
+    console.log('aa')
+    uploadData.append("image", e.target.files[0]);
+    petService
+      .uploadImage(uploadData)
+      .then((response) => {
+        setImage(response.fileUrl);
+        console.log('aa')
+      })
+      .catch((err) => console.log("Error while uploading the file: ", err));
+  }; */
+
+  const handleFileUpload = async (e) => {
+    // console.log("The file to be uploaded is: ", e.target.files[0]);
+
+    const uploadData = new FormData();
+
+    // imageUrl => this name has to be the same as in the model since we pass
+    // req.body to .create() method when creating a new movie in '/api/movies' POST route
+    uploadData.append("image", e.target.files[0]);
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/upload`,
+        uploadData
+      );
+      setImage(response.data.fileUrl);
+    } catch (error) {
+      console.log("Error while uploading the file: ", error);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const body = { name, species, breed, location, age, weight, image, gender, sterilized, birthDate, description };
+    const body = {
+      name,
+      species,
+      breed,
+      location,
+      age,
+      weight,
+      image,
+      gender,
+      sterilized,
+      birthDate,
+      description,
+    };
     try {
-      await petService.createPet(body)
+      await petService.createPet(body);
       navigate("/profile"); // Redirect
     } catch (error) {
       console.log(error);
@@ -55,10 +99,9 @@ function AddPet() {
   };
 
   return (
-<section>
+    <section>
       <h1>Put up a Pet for Adoption!</h1>
       <StyledForm onSubmit={handleSubmit}>
-
         <label htmlFor="name">Name:</label>
         <input
           type="text"
@@ -95,7 +138,7 @@ function AddPet() {
           onChange={handleAge}
         />
 
-<label htmlFor="birthDate">Birth Date:</label>
+        <label htmlFor="birthDate">Birth Date:</label>
         <input
           type="date"
           name="birthDate"
@@ -104,7 +147,7 @@ function AddPet() {
           onChange={handleBirthDate}
         />
 
-{/* <label htmlFor="gender">Gender:</label>
+        {/* <label htmlFor="gender">Gender:</label>
         <input
           type="radio"
           name="gender"
@@ -121,30 +164,30 @@ function AddPet() {
         /> */}
 
         <Box id="radioBtnContainer">
-            <FormControl>
-              <FormLabel id="userTypeLabel">
-                <Typography variant="h4">Gender:</Typography>
-              </FormLabel>
-              <RadioGroup
-                name="gender"
-                value={gender}
-                onChange={handleGender}
-                row
-                aria-labelledby="GenderLabel"
-              >
-                <FormControlLabel
-                  control={<Radio color="secondary" />}
-                  label={<Typography variant="h5">Male</Typography>}
-                  value="true"
-                />
-                <FormControlLabel
-                  control={<Radio color="secondary" />}
-                  label={<Typography variant="h5">Female</Typography>}
-                  value="false"
-                />
-              </RadioGroup>
-            </FormControl>
-          </Box>
+          <FormControl>
+            <FormLabel id="userTypeLabel">
+              <Typography variant="h4">Gender:</Typography>
+            </FormLabel>
+            <RadioGroup
+              name="gender"
+              value={gender}
+              onChange={handleGender}
+              row
+              aria-labelledby="GenderLabel"
+            >
+              <FormControlLabel
+                control={<Radio color="secondary" />}
+                label={<Typography variant="h5">Male</Typography>}
+                value="true"
+              />
+              <FormControlLabel
+                control={<Radio color="secondary" />}
+                label={<Typography variant="h5">Female</Typography>}
+                value="false"
+              />
+            </RadioGroup>
+          </FormControl>
+        </Box>
 
         <label htmlFor="sterilized">Sterilized:</label>
         <input
@@ -180,25 +223,23 @@ function AddPet() {
           id="description"
           placeholder="Tell us about the new addition to our family!"
           onChange={handleDescription}
-          />
+        />
 
-          {/* image */}
+        {/* image */}
 
-
-          <label htmlFor="image">Image:</label>
+        <label htmlFor="image">Image:</label>
         <input
           type="file"
           name="image"
           placeholder="What does your bud look like?"
-          onChange={handleImage}
-          />
+          onChange={handleFileUpload}
+          encType="multipart/form/data"
+        />
 
         <StyledButton variant="primary" type="submit">
           Add!
         </StyledButton>
       </StyledForm>
-
-    
     </section>
   );
 }

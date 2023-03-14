@@ -30,6 +30,13 @@ class PetService {
     //axios.get(`${import.meta.env.VITE_API_URL}/pets`)
   };
 
+  /* uploadImage = (file) => {
+    return this.api
+      .post("/upload", file)
+      .then((res) => res.data)
+      .catch('a');
+  }; */
+
   //Create a pet
   // body refers to the object
   createPet = (body) => {

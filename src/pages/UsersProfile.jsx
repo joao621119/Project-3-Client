@@ -27,28 +27,35 @@ function UsersProfile() {
       {profile && (
         <>
           <section>
-
-          <div>
-            <img src={profile.image} alt="Profile Image" />
-          </div>
-
-          <div>
-            <Link to={`/profile/edit/${profile._id}`}>
-              <StyledButton primary={true}>
-                <Typography variant="h4">Edit Profile</Typography>
-              </StyledButton>
-            </Link>
-          </div>
-
-          <div>
-            <Typography variant="h4">{profile.name}</Typography>
-            <Typography variant="h4">Gender:{profile.gender}</Typography>
-            <Typography variant="h4">Age: {profile.age}</Typography>
-            <Typography variant="h4">Location: {profile.location}</Typography>
-            <Typography variant="h4">About {profile.description}</Typography>
+            <div>
+              <img src={profile.image} alt="Profile Image" />
             </div>
 
-            <Typography variant="h4">{profile.interestedInPets[0]}</Typography>
+            <div>
+              <Link to={`/profile/edit/${profile._id}`}>
+                <StyledButton primary={true}>
+                  <Typography variant="h4">Edit Profile</Typography>
+                </StyledButton>
+              </Link>
+            </div>
+
+            <div>
+              <Typography variant="h4">{profile.name}</Typography>
+              <Typography variant="h4">Gender:{profile.gender}</Typography>
+              <Typography variant="h4">Age: {profile.age}</Typography>
+              <Typography variant="h4">Location: {profile.location}</Typography>
+              <Typography variant="h4">About {profile.description}</Typography>
+            </div>
+            {profile.petsForAdoption.map((el) => {
+              return (
+                <>
+                  <h1>{el.name}</h1>
+                  <img src={el.image} alt="" />
+                </>
+              );
+            })}
+
+             <Typography variant="h4">{profile.petsForAdoption[0].name}</Typography>
           </section>
         </>
       )}
@@ -56,4 +63,4 @@ function UsersProfile() {
   );
 }
 
-export default UsersProfile
+export default UsersProfile;
