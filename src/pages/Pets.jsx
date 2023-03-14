@@ -3,18 +3,19 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import petService from "../services/pet.service";
 import { StyledSection } from "../components/styled/Section.styled";
+import { PetListSection } from "../components/styled/PetList.styled";
+import SearchPets from "../components/SearchPets";
 
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { CardActionArea } from "@mui/material";
-// css
-
-// components
+import { CardActionArea, Container } from "@mui/material";
+import Grid from "@mui/material/Grid";
 
 function Pets() {
-  const [pets, setPets] = useState([]);
+  const [pets, setPets] = useState([]); // Main array of pets
+  const [showPet, setShowPet] = useState([]); // Filtered array of pets (search)
 
   const getPets = async () => {
     try {
@@ -31,61 +32,73 @@ function Pets() {
     getPets();
   }, []);
 
+  const searchPets = (query) => {
+    const filteredPets = pets.filter((pet) =>
+      pet.name.toLowerCase().includes(query.toLowerCase())
+    );
+    setShowPet(filteredPets);
+  };
+  /* If the showpet array has something inside use it, otherwise use the main pets array */
+  const petList = showPet.length ? showPet : pets;
+
   return (
-    <StyledSection>
+    <Container>
+      <SearchPets searchPets={searchPets} />
       <Typography variant="h1" gutterBottom>
         Pets
       </Typography>
-      {pets.map((pet) => {
-        return (
-          <>
-            {/*  Assign it a key otherwise react will complain if you map ovr an array without a key */}
-
-            <Link to={`/pets/${pet._id}`} key={pet._id}>
-              <Card sx={{ maxWidth: 345 }} key={pet._id}>
-                <CardActionArea>
-                  <CardMedia
-                    component="img"
-                    height="140"
-                    image={pet.image}
-                    alt="A Pet"
-                  />
-                  <CardContent key={pet._id}>
-                    <Typography gutterBottom variant="h5" component="div">
-                      {pet.name}
-                    </Typography>
-                    <Typography gutterBottom variant="h5" component="div">
-                      {pet.species}
-                    </Typography>
-                    <Typography gutterBottom variant="h5" component="div">
-                      {pet.breed}
-                    </Typography>
-                    <Typography gutterBottom variant="h5" component="div">
-                      {pet.owner.length && pet.owner[0].name}
-                    </Typography>
-
-                    <Typography variant="body2" color="text.secondary">
-                      {pet.description}
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
-            </Link>
-          </>
-        );
-      })}
-    </StyledSection>
+      <PetListSection>
+        <Grid container spacing={2}>
+          {petList.map((pet) => {
+            return (
+              <Grid item xs={12} sm={6} md={4} key={pet._id}>
+                <Link to={`/pets/${pet._id}`}>
+                  <Card sx={{ borderRadius: "16px" }}>
+                    <CardActionArea>
+                      <CardMedia
+                        component="img"
+                        height="300"
+                        width="100%"
+                        image={pet.image}
+                        alt={pet.name}
+                        sx={{
+                          objectFit: "cover",
+                          position: "relative",
+                          borderRadius: "16px 16px 0 0"
+                        }}
+                      />
+                      <CardContent
+                        sx={{
+                          position: "absolute",
+                          bottom: 0,
+                          width: "100%",
+                          backgroundColor: "rgba(0, 0, 0, 0.7)",
+                          color: "white",
+                          padding: "10px",
+                          borderRadius: "0 0 16px 16px",
+                        }}
+                      >
+                        <Typography gutterBottom variant="h5" component="div">
+                          {pet.name}
+                        </Typography>
+                        <Typography
+                          gutterBottom
+                          variant="body1"
+                          component="div"
+                        >
+                          {pet.species} - {pet.breed}
+                        </Typography>
+                      </CardContent>
+                    </CardActionArea>
+                  </Card>
+                </Link>
+              </Grid>
+            );
+          })}
+        </Grid>
+      </PetListSection>
+    </Container>
   );
 }
 
 export default Pets;
-/* 
-import React from 'react'
-
-function Pets() {
-  return (
-    <div>Pets</div>
-  )
-}
-
-export default Pets */
