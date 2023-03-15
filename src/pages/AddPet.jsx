@@ -225,8 +225,6 @@ function AddPet() {
           onChange={handleDescription}
         />
 
-        {/* image */}
-
         <label htmlFor="image">Image:</label>
         <input
           type="file"

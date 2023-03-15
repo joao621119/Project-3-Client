@@ -1,11 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import petService from "../services/pet.service";
-import { Typography } from "@mui/material";
+import { Typography, Button } from "@mui/material";
+import { StyledButton } from "../components/styled/Button.styled";
+import { AuthContext } from "../context/auth.context";
+import profileService from "../services/profile.service";
 
 function PetDetails() {
   const [pet, setPet] = useState(null);
+  const [liked, setLiked] = useState(false);
+  const [deleted, setDeleted] = useState(false);
+
+  const { user } = useContext(AuthContext);
 
   const { id } = useParams();
 
@@ -18,9 +25,30 @@ function PetDetails() {
     }
   };
 
+  const likePet = async () => {
+    try {
+      const response = await petService.likePet(id);
+      setLiked(true);
+      setPet(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const deletePet = async () => {
+    try {
+      await petService.deletePet(id);
+      setDeleted(true);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     getPet();
   }, []);
+
+  const canEdit = pet && pet.owner.includes(user._id);
 
   return (
     <div>
@@ -48,9 +76,25 @@ function PetDetails() {
             <Link to={`/profile/${pet.owner[0]._id}`} key={pet.owner._id}>
               <Typography>Owner: {pet.owner[0].name}</Typography>
             </Link>
+            {canEdit && (
+              <Link to={`/pets/edit/${id}`}>
+                <StyledButton>Edit Pet</StyledButton>
+              </Link>
+            )}
+            {pet.owner.includes(user._id) && (
+              <StyledButton onClick={deletePet}>Delete Pet</StyledButton>
+            )}
+            <StyledButton
+              primary={liked ? "true" : "false"}
+              disabled={liked}
+              onClick={likePet}
+            >
+              {liked ? "Liked" : "Like"}
+            </StyledButton>
           </div>
         </>
       )}
+      {deleted && <p>Pet has been deleted</p>}
     </div>
   );
 }

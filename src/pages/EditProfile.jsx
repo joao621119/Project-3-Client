@@ -23,10 +23,29 @@ function EditProfile() {
   const handleLocation = (e) => setLocation(e.target.value);
   const handleAge = (e) => setAge(e.target.value);
   const handlePhone = (e) => setPhone(e.target.value);
-  const handleImage = (e) => setImage(e.target.value);
+  /*  const handleImage = (e) => setImage(e.target.value); */
   const handleGender = (e) => setGender(e.target.value);
 
   const navigate = useNavigate();
+
+  const handleFileUpload = async (e) => {
+    // console.log("The file to be uploaded is: ", e.target.files[0]);
+
+    const uploadData = new FormData();
+
+    // imageUrl => this name has to be the same as in the model since we pass
+    // req.body to .create() method when creating a new movie in '/api/movies' POST route
+    uploadData.append("image", e.target.files[0]);
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/upload`,
+        uploadData
+      );
+      setImage(response.data.fileUrl);
+    } catch (error) {
+      console.log("Error while uploading the file: ", error);
+    }
+  };
 
   const { id } = useParams();
 
@@ -153,6 +172,15 @@ function EditProfile() {
         />
 
         {/* label for image */}
+
+        <label htmlFor="image">Image:</label>
+        <input
+          type="file"
+          name="image"
+          placeholder="Profile Image"
+          onChange={handleFileUpload}
+          encType="multipart/form/data"
+        />
 
         <StyledButton primary={true} type="submit">
           Save Changes

@@ -61,6 +61,11 @@ class PetService {
   getSingleProfile = (id) => {
     return this.api.get(`/profile/${id}`);
   };
+
+  // Like a pet
+  likePet = (id) => {
+    return this.api.post(`/pets/like/${id}`);
+  };
 }
 
 const petService = new PetService();
