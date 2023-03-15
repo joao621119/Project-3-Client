@@ -36,6 +36,7 @@ function EditProfile() {
     // imageUrl => this name has to be the same as in the model since we pass
     // req.body to .create() method when creating a new movie in '/api/movies' POST route
     uploadData.append("image", e.target.files[0]);
+
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/upload`,
@@ -83,6 +84,7 @@ function EditProfile() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const body = {
       name,
       description,
@@ -93,11 +95,9 @@ function EditProfile() {
       image,
       age,
     };
+
     try {
-      await axios.put(
-        `${import.meta.env.VITE_API_URL}/profile/edit/${id}`,
-        body
-      );
+      await axios.put(`${import.meta.env.VITE_API_URL}/profile/edit/${id}`, body);
       navigate(`/profile`); // Redirect
     } catch (error) {
       console.log(error);
@@ -106,7 +106,9 @@ function EditProfile() {
 
   return (
     <section>
+
       <h1>Edit Profile:</h1>
+
       <StyledForm onSubmit={handleSubmit}>
         <label htmlFor="name">Name</label>
         <input
@@ -171,8 +173,6 @@ function EditProfile() {
           onChange={handleGender}
         />
 
-        {/* label for image */}
-
         <label htmlFor="image">Image:</label>
         <input
           type="file"
@@ -182,14 +182,11 @@ function EditProfile() {
           encType="multipart/form/data"
         />
 
-        <StyledButton primary={true} type="submit">
-          Save Changes
-        </StyledButton>
+        <StyledButton primary={true} type="submit">Save Changes</StyledButton>
       </StyledForm>
 
-      <StyledButton primary={true} onClick={deleteProfile}>
-        Delete your Profile
-      </StyledButton>
+      <StyledButton primary={true} onClick={deleteProfile}>Delete your Profile</StyledButton>
+
     </section>
   );
 }

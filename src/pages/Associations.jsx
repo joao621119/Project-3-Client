@@ -14,6 +14,7 @@ import associationsService from "../services/associations.service";
 
 function AssociationsList() {
   const [items, setItems] = useState([]); // Main array of items
+  /* ARE WE USING THIS?: */
   const [showItems, setShowItems] = useState([]); // Filtered array of items (search)
 
   const getAssociations = async () => {
@@ -40,10 +41,11 @@ function AssociationsList() {
 
   return (
     <Container>
+
       <Search searchItems={searchItems} />
-      <Typography variant="h1" gutterBottom>
-        Associations
-      </Typography>
+
+      <Typography variant="h1" gutterBottom>Associations</Typography>
+
       <ListSection>
         <Grid container spacing={2}>
           {itemList.map((item) => {
@@ -64,6 +66,7 @@ function AssociationsList() {
                           borderRadius: "16px 16px 0 0",
                         }}
                       />
+
                       <CardContent
                         sx={{
                           position: "absolute",
@@ -75,9 +78,8 @@ function AssociationsList() {
                           borderRadius: "0 0 16px 16px",
                         }}
                       >
-                        <Typography gutterBottom variant="h5" component="div">
-                          {item.name}
-                        </Typography>
+                        <Typography gutterBottom variant="h5" component="div">{item.name}</Typography>
+                        
                         <Typography
                           gutterBottom
                           variant="body1"
@@ -87,6 +89,7 @@ function AssociationsList() {
                           {item.location} - {item.services}
                         </Typography>
                       </CardContent>
+
                     </CardActionArea>
                   </Card>
                 </Link>

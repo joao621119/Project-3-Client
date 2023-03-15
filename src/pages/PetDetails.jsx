@@ -66,35 +66,58 @@ function PetDetails() {
       {pet && (
         <>
           <div>
-            <img src={pet.image} alt="" />
+
+            <div>
+              <img src={pet.image} alt="" />
+            </div>
 
             <h1>{pet.name}</h1>
+
             <Typography>Gender: {pet.gender ? "male" : "female"}</Typography>
-            <Typography>Age: {pet.age}</Typography>
+
+            {pet. age && (
+              <Typography>Age: {pet.age}</Typography>
+            )}
+
             {pet.birthDate && (
               <Typography>Birth-date: {pet.birthDate}</Typography>
             )}
+
+            {pet.weight && (
             <Typography>Weight {pet.weight}kg </Typography>
-            <Typography>Sterilized: {pet.sterilized}</Typography>
+            )}
+
+            {pet.sterilized && (
+              <Typography>Sterilized: {pet.sterilized}</Typography>
+            )}
+
             <Typography>Species: {pet.species}</Typography>
-            <Typography>
-              Breed of {pet.species}: {pet.breed}
-            </Typography>
+
+            {pet.breed && (
+            <Typography>Breed of {pet.species}: {pet.breed}</Typography>
+            )}
+
             <Typography>Location: {pet.location}</Typography>
-            <Typography>
-              About {pet.name}: {pet.description}
-            </Typography>
-            <Link to={`/profile/${pet.owner[0]._id}`} key={pet.owner._id}>
-              <Typography>Owner: {pet.owner[0].name}</Typography>
-            </Link>
+
+            <Typography>About {pet.name}: {pet.description}</Typography>
+
+            <Link to={`/profile/${pet.owner[0]._id}`} key={pet.owner._id}><Typography>Owner: {pet.owner[0].name}</Typography></Link>
+
+
+{/* TO EDIT / DELETE PET IF IT BELONGS TO THE USER: */}
+
            {/*  {canEdit && (
             )} */}
-              <Link to={`/pets/edit/${id}`}>
-                <StyledButton>Edit Pet</StyledButton>
-              </Link>
+
+              <Link to={`/pets/edit/${id}`}><StyledButton>Edit Pet</StyledButton></Link>
+
             {/* {pet.owner.includes(user._id) && (
               )} */}
+
             <StyledButton onClick={deletePet}>Delete Pet</StyledButton>
+            
+
+            {/* TO LIKE/UNLIKE PET */}
             <StyledButton
               primary={liked ? "true" : "false"}
               disabled={liked}
@@ -102,9 +125,11 @@ function PetDetails() {
             >
               {liked ? "Liked" : "Like"}
             </StyledButton>
+            
           </div>
         </>
       )}
+
       {deleted && <p>Pet has been deleted</p>}
     </div>
   );

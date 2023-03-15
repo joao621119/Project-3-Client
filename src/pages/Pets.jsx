@@ -17,6 +17,7 @@ import Grid from "@mui/material/Grid";
 function Pets() {
   const [pets, setPets] = useState([]); // Main array of pets
   const [showPet, setShowPet] = useState([]); // Filtered array of pets (search)
+  const [selectedSpecies, setSelectedSpecies] = useState(null);
 
   const getPets = async () => {
     try {
@@ -32,23 +33,53 @@ function Pets() {
   }, []);
 
   const searchPets = (query) => {
-    const filteredPets = pets.filter((pet) =>
-      pet.location.toLowerCase().includes(query.toLowerCase())
+    const filteredPets = pets.filter(
+      (pet) =>
+        pet.location.toLowerCase().includes(query.toLowerCase()) &&
+        (selectedSpecies === null ||
+          pet.species.toLowerCase() === selectedSpecies.toLowerCase())
     );
     setShowPet(filteredPets);
   };
+
+  const filterBySpecies = (species) => {
+    setSelectedSpecies(species);
+
+    if (species === null) {
+      setShowPet(pets);
+    } else {
+      const filteredPets = pets.filter((pet) =>
+        pet.species.toLowerCase() === species.toLowerCase()
+      );
+      setShowPet(filteredPets);
+    }
+  };
+
+
   /* If the showpet array has something inside use it, otherwise use the main pets array */
   const petList = showPet.length ? showPet : pets;
 
   return (
     <Container>
+      
       <SearchPets searchPets={searchPets} />
-      <Typography variant="h1" gutterBottom>
-        Pets
-      </Typography>
-     <Link to="/pets/add"><StyledButton primary={true}><Typography>Add a pet</Typography></StyledButton></Link>
+
+      <div>
+        <StyledButton onClick={() => filterBySpecies(null)}>📍 Show by Location</StyledButton>
+        <StyledButton onClick={() => filterBySpecies('dog')}>🐶</StyledButton>
+        <StyledButton onClick={() => filterBySpecies('cat')}>🐱</StyledButton>
+        <StyledButton onClick={() => filterBySpecies('rabbit')}>🐰</StyledButton>
+        <StyledButton onClick={() => filterBySpecies('bird')}>🐦</StyledButton>
+    </div>
+
+    <Typography variant="h1" gutterBottom>Pets</Typography>
+
+      <Link to="/pets/add">
+        <StyledButton primary={true}><Typography>Add a pet</Typography></StyledButton>
+      </Link>
 
       <PetListSection>
+
         <Grid container spacing={2}>
           {petList.map((pet) => {
             return (
@@ -79,33 +110,35 @@ function Pets() {
                           borderRadius: "0 0 16px 16px",
                         }}
                       >
-                        <Typography gutterBottom variant="h5" component="div">
-                          {pet.name}
-                        </Typography>
-                    
+
+                      <Typography gutterBottom variant="h5" component="div">{pet.name}</Typography>
+
                         <Typography
                           gutterBottom
                           variant="body1"
                           component="div"
                         >
-                          {pet.location}
+                          📍{pet.location}
                         </Typography>
-                        {pet.species &&
-                        <Typography
-                          gutterBottom
-                          variant="body1"
-                          component="div"
-                        >
-                        🐕
-                        </Typography>
-                        }
-                        <Typography
-                          gutterBottom
-                          variant="body1"
-                          component="div"
-                        >
-                          {pet.breed}
-                        </Typography>
+
+                          <Typography
+                            gutterBottom
+                            variant="body1"
+                            component="div"
+                          >
+                            {pet.species}
+                          </Typography>
+
+                        {pet.breed && (
+                          <Typography
+                            gutterBottom
+                            variant="body1"
+                            component="div"
+                          >
+                            {pet.breed}
+                          </Typography>
+                        )}
+                        
                       </CardContent>
                     </CardActionArea>
                   </Card>

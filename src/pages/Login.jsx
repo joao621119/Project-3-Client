@@ -54,6 +54,7 @@ function Login() {
 
   return (
     <Container sx={{ height: "100vh" }}>
+      
       <StyledSection>
         <Typography variant="h1" gutterBottom>
           Log in
@@ -81,11 +82,11 @@ function Login() {
             onChange={handlePassword}
           />
 
-          <StyledButton type="submit" primary={true}>
-            <Typography variant="h5">Login</Typography>
-          </StyledButton>
+          <StyledButton type="submit" primary={true}><Typography variant="h5">Login</Typography></StyledButton>
         </StyledForm>
+
         <Typography>Don't have an account?</Typography>
+        
         <Link to="/signup">Sign up</Link>
       </StyledSection>
     </Container>

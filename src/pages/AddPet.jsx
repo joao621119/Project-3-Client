@@ -42,6 +42,7 @@ function AddPet() {
   /* const handleImage = (e) => setImage(e.target.value); */
 
   const navigate = useNavigate();
+
   /*   const storedToken = localStorage.getItem("authToken"); */
   /* const handleFileUpload = (e) => {
     const uploadData = new FormData();
@@ -64,6 +65,7 @@ function AddPet() {
     // imageUrl => this name has to be the same as in the model since we pass
     // req.body to .create() method when creating a new movie in '/api/movies' POST route
     uploadData.append("image", e.target.files[0]);
+    
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/upload`,
@@ -77,6 +79,7 @@ function AddPet() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const body = {
       name,
       species,
@@ -90,9 +93,10 @@ function AddPet() {
       birthDate,
       description,
     };
+
     try {
       await petService.createPet(body);
-      navigate("/profile"); // Redirect
+      navigate("/profile"); // Redirect to profile once pet is added
     } catch (error) {
       console.log(error);
     }
@@ -100,14 +104,16 @@ function AddPet() {
 
   return (
     <section>
+      
       <h1>Put up a Pet for Adoption!</h1>
+
       <StyledForm onSubmit={handleSubmit}>
         <label htmlFor="name">Name:</label>
         <input
           type="text"
           name="name"
           id="name"
-          placeholder="Ex: Mr. Wiggles"
+          placeholder="Ex: Mr. Finns"
           onChange={handleName}
         />
 
@@ -125,7 +131,7 @@ function AddPet() {
           type="text"
           name="breed"
           id="breed"
-          placeholder="Ex: Bottlenose Dolphin"
+          placeholder="Ex: Dolphinny Dolphin"
           onChange={handleBreed}
         />
 
@@ -168,6 +174,7 @@ function AddPet() {
             <FormLabel id="userTypeLabel">
               <Typography variant="h4">Gender:</Typography>
             </FormLabel>
+            
             <RadioGroup
               name="gender"
               value={gender}
@@ -203,7 +210,7 @@ function AddPet() {
           type="number"
           name="weight"
           id="weight"
-          placeholder="In KG, please!"
+          placeholder="In KG"
           onChange={handleWeight}
         />
 
@@ -212,7 +219,7 @@ function AddPet() {
           type="text"
           name="location"
           id="location"
-          placeholder="Where is your pet?"
+          placeholder="Where can your pet be picked up?"
           onChange={handleLocation}
         />
 
@@ -234,9 +241,8 @@ function AddPet() {
           encType="multipart/form/data"
         />
 
-        <StyledButton variant="primary" type="submit">
-          Add!
-        </StyledButton>
+        <StyledButton variant="primary" type="submit">Add this Pet</StyledButton>
+
       </StyledForm>
     </section>
   );

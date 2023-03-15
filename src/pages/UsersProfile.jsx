@@ -46,7 +46,27 @@ function UsersProfile() {
               <Typography variant="h4">Location: {profile.location}</Typography>
               <Typography variant="h4">About {profile.description}</Typography>
             </div>
+
+            {profile.petsForAdoption.length > 0 && (
+              <Typography>The pets you've put up for adoption:</Typography>
+            )}
+            
             {profile.petsForAdoption.map((pet) => {
+              return (
+                <>
+                  <Link to={`/pets/${pet._id}`} key={pet._id}>
+                    <h1>{pet.name}</h1>
+                    <h2>{pet.species}</h2>
+                    <img src={pet.image} alt="" />
+                  </Link>
+                </>
+              );
+            })}
+
+            {profile.interestedInPets.length > 0 && (
+              <Typography>This are the pets you're interested in:</Typography>
+            )}
+            {profile.interestedInPets.map((pet) => {
               return (
                 <>
                   <h1>{pet.name}</h1>
@@ -58,16 +78,18 @@ function UsersProfile() {
                 </>
               );
             })}
-
-            {profile.interestedInPets.map((pet) => {
+          
+            {profile.likedAssociations.length > 0 && (
+              <Typography>This are the associations you've liked:</Typography>
+            )}
+            {profile.likedAssociations.map((association) => {
               return (
                 <>
-                  <h1>{pet.name}</h1>
-                  <h2>{pet.species}</h2>
-                  <img src={pet.image} alt="" />
                   <Link to={`/pets/${pet._id}`} key={pet._id}>
-              <Typography>{pet.species}: {pet.name}</Typography>
-            </Link>
+                  <img src={association.image} alt="Association's image" />
+                  <h1>{association.name}</h1>
+                  <h2>Service: {association.service}</h2>
+                  </Link>
                 </>
               );
             })}

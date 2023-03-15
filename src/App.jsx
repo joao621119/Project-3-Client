@@ -26,6 +26,7 @@ import { ToastContainer, toast } from "react-toastify";
 function App() {
   return (
     <div className="App">
+
       <GlobalStyled />
 
       <ToastContainer />
@@ -52,6 +53,7 @@ function App() {
             </Private>
           }
         />
+        
         <Route
           path="/profile/edit/:id"
           element={
@@ -60,6 +62,7 @@ function App() {
             </Private>
           }
         />
+        
         <Route path="/pets/edit/:id" element={<EditPet />} />
         <Route path="/pets/add" element={<AddPet />} />
         

@@ -22,10 +22,10 @@ function EditPet() {
   const [location, setLocation] = useState("");
   const [age, setAge] = useState(0);
   const [weight, setWeight] = useState(0);
-  const [image, setImage] = useState("");
   const [gender, setGender] = useState(true);
   const [sterilized, setSterilized] = useState(true);
   const [description, setDescription] = useState("");
+  const [image, setImage] = useState("");
 
   const handleName = (e) => setName(e.target.value);
   const handleSpecies = (e) => setSpecies(e.target.value);
@@ -33,12 +33,32 @@ function EditPet() {
   const handleLocation = (e) => setLocation(e.target.value);
   const handleAge = (e) => setAge(e.target.value);
   const handleWeight = (e) => setWeight(e.target.value);
-  const handleImage = (e) => setImage(e.target.value);
   const handleGender = (e) => setGender(e.target.value);
   const handleSterilized = (e) => setSterilized(e.target.value);
   const handleDescription = (e) => setDescription(e.target.value);
+  /* const handleImage = (e) => setImage(e.target.value); */
 
   const navigate = useNavigate();
+
+  const handleFileUpload = async (e) => {
+    // console.log("The file to be uploaded is: ", e.target.files[0]);
+
+    const uploadData = new FormData();
+
+    // imageUrl => this name has to be the same as in the model since we pass
+    // req.body to .create() method when creating a new movie in '/api/movies' POST route
+    uploadData.append("image", e.target.files[0]);
+
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/upload`,
+        uploadData
+      );
+      setImage(response.data.fileUrl);
+    } catch (error) {
+      console.log("Error while uploading the file: ", error);
+    }
+  };
 
   const { id } = useParams();
 
@@ -77,6 +97,7 @@ function EditPet() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const body = {
       name,
       species,
@@ -89,6 +110,7 @@ function EditPet() {
       description,
       location,
     };
+
     try {
       await axios.put(`${import.meta.env.VITE_API_URL}/pets/edit/${id}`, body);
       navigate(`/profile`); // Redirect
@@ -100,6 +122,7 @@ function EditPet() {
   return (
     <section>
       <h1>Edit {id.name}:</h1>
+
       <StyledForm onSubmit={handleSubmit}>
         <label htmlFor="name">Name</label>
         <input
@@ -185,8 +208,10 @@ function EditPet() {
         <input
           type="file"
           name="image"
-          placeholder="What does your bud look like?"
-          onChange={handleImage}
+          placeholder="Profile Image"
+          onChange={handleFileUpload}
+          encType="multipart/form/data"
+          value={image}
         />
 
         <label htmlFor="description">Description:</label>
