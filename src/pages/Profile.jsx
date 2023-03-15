@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import { AuthContext } from "../context/auth.context";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 
@@ -13,6 +14,7 @@ import { StyledSection } from "../components/styled/Section.styled";
 
 
 function Profile() {
+  const { loggedIn, user } = useContext(AuthContext);
   const [profile, setProfile] = useState(null);
 
   const { id } = useParams();
@@ -45,12 +47,23 @@ function Profile() {
           
             {profile.gender && 
               <Typography gutterBottom variant="body1" component="div">
-               {profile.gender}
+              Gender: {profile.gender}
               </Typography>
             }
             <Typography variant="h3">Age: {profile.age}</Typography>
 
             <Typography variant="h3">Location: {profile.location}</Typography>
+
+            {loggedIn ? (
+              <>
+              <Typography variant="h4">Location: {profile.location}</Typography>
+              <Typography variant="h4">Email: {profile.email}</Typography>
+              <Typography variant="h4">Phone number: {profile.phone}</Typography>
+              </>) : (
+                <>
+              <Typography variant="h4">Phone number: ·········{profile.phone.slice(profile.phone.length - 3)}</Typography>
+            </>
+              )}
 
             </div>
             <Typography variant="h3">
