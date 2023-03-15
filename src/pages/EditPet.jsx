@@ -90,7 +90,7 @@ function EditPet() {
       location,
     };
     try {
-      await axios.put(`${import.meta.env.VITE_API_URL}/pets/${id}`, body);
+      await axios.put(`${import.meta.env.VITE_API_URL}/pets/edit/${id}`, body);
       navigate(`/profile`); // Redirect
     } catch (error) {
       console.log(error);

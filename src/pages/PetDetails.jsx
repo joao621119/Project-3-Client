@@ -16,6 +16,8 @@ function PetDetails() {
 
   const { id } = useParams();
 
+  const storedToken = localStorage.getItem("authToken");
+
   const getPet = async () => {
     try {
       const response = await petService.getSinglePet(id);
@@ -27,9 +29,18 @@ function PetDetails() {
 
   const likePet = async () => {
     try {
-      const response = await petService.likePet(id);
-      setLiked(true);
+      const response = await axios.put(
+        `${import.meta.env.VITE_API_URL}/pets/like/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${storedToken}`,
+          },
+        }
+      );
+      /*  await petService.likePet(id); */
+      console.log(response.data);
       setPet(response.data);
+      setLiked(true);
     } catch (error) {
       console.log(error);
     }
@@ -76,14 +87,14 @@ function PetDetails() {
             <Link to={`/profile/${pet.owner[0]._id}`} key={pet.owner._id}>
               <Typography>Owner: {pet.owner[0].name}</Typography>
             </Link>
-            {canEdit && (
+           {/*  {canEdit && (
+            )} */}
               <Link to={`/pets/edit/${id}`}>
                 <StyledButton>Edit Pet</StyledButton>
               </Link>
-            )}
-            {pet.owner.includes(user._id) && (
-              <StyledButton onClick={deletePet}>Delete Pet</StyledButton>
-            )}
+            {/* {pet.owner.includes(user._id) && (
+              )} */}
+            <StyledButton onClick={deletePet}>Delete Pet</StyledButton>
             <StyledButton
               primary={liked ? "true" : "false"}
               disabled={liked}

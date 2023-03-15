@@ -34,6 +34,11 @@ class AssociationsService {
   getSingleAssociation = (id) => {
     return this.api.get(`/associations/${id}`);
   };
+
+   // Like a association
+   likeAssociation = (id) => {
+    return this.api.post(`/associations/like/${id}`);
+  };
 }
 
 const associationsService = new AssociationsService();

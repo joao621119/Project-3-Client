@@ -49,12 +49,12 @@ class PetService {
 
   // Edit a pet
   editSinglePet = (id, body) => {
-    return this.api.put(`/pets/${id}`, body);
+    return this.api.put(`/pets/edit/${id}`, body);
   };
 
   // Delete a pet
   deletePet = (id) => {
-    return this.api.delete(`/pets/${id}`);
+    return this.api.delete(`/pets/edit/${id}`);
   };
 
   // Get single profile
@@ -64,7 +64,7 @@ class PetService {
 
   // Like a pet
   likePet = (id) => {
-    return this.api.post(`/pets/like/${id}`);
+    return this.api.put(`/pets/like/${id}`);
   };
 }
 
