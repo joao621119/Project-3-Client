@@ -46,16 +46,31 @@ function UsersProfile() {
               <Typography variant="h4">Location: {profile.location}</Typography>
               <Typography variant="h4">About {profile.description}</Typography>
             </div>
-            {profile.petsForAdoption.map((el) => {
+            {profile.petsForAdoption.map((pet) => {
               return (
                 <>
-                  <h1>{el.name}</h1>
-                  <img src={el.image} alt="" />
+                  <h1>{pet.name}</h1>
+                  <h2>{pet.species}</h2>
+                  <img src={pet.image} alt="" />
+                  <Link to={`/pets/${pet._id}`} key={pet._id}>
+              <Typography>{pet.species}: {pet.name}</Typography>
+            </Link>
                 </>
               );
             })}
 
-             <Typography variant="h4">{profile.petsForAdoption[0].name}</Typography>
+            {profile.interestedInPets.map((pet) => {
+              return (
+                <>
+                  <h1>{pet.name}</h1>
+                  <h2>{pet.species}</h2>
+                  <img src={pet.image} alt="" />
+                  <Link to={`/pets/${pet._id}`} key={pet._id}>
+              <Typography>{pet.species}: {pet.name}</Typography>
+            </Link>
+                </>
+              );
+            })}
           </section>
         </>
       )}
