@@ -11,9 +11,10 @@ function PetDetails() {
   const [pet, setPet] = useState(null);
   const [liked, setLiked] = useState(false);
   const [deleted, setDeleted] = useState(false);
+  const [canEdit, setCanEdit] = useState("");
 
   const { user } = useContext(AuthContext);
-
+  // console.log("this is the user", user);
   const { id } = useParams();
 
   const storedToken = localStorage.getItem("authToken");
@@ -21,7 +22,10 @@ function PetDetails() {
   const getPet = async () => {
     try {
       const response = await petService.getSinglePet(id);
+      // console.log(response.data.owner[0]._id);
+
       setPet(response.data);
+      console.log(response.data)
     } catch (error) {
       console.log(error);
     }
@@ -29,18 +33,19 @@ function PetDetails() {
 
   const likePet = async () => {
     try {
-      const response = await axios.put(
-        `${import.meta.env.VITE_API_URL}/pets/like/${id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${storedToken}`,
-          },
-        }
-      );
-      /*  await petService.likePet(id); */
-      console.log(response.data);
-      setPet(response.data);
-      setLiked(true);
+      if(liked){
+        console.log(liked)
+        
+        const response = await petService.unlikePet(id);
+      } else {
+        console.log(liked)
+        const response = await petService.likePet(id);
+
+      }
+
+
+      getPet()
+      checkLike()
     } catch (error) {
       console.log(error);
     }
@@ -55,18 +60,53 @@ function PetDetails() {
     }
   };
 
+  const checkEdit = () => {
+    if (pet && pet.owner[0]._id === user._id) {
+      setCanEdit(true);
+    } else {
+      setCanEdit(false);
+    }
+  };
+
+  const checkLike = () => {
+    if (pet && pet.interestedUsers .find(interested => interested  === user._id)) {
+      setLiked(true);
+    } else {
+      setLiked(false);
+    }
+  };
+  
+  useEffect(() => {
+    checkEdit();
+    checkLike()
+  }, [user, pet]);
+  /*  const userCanEdit = async () => {
+    try {
+      const response = await petService.getSinglePet(id);
+
+      //const edit = await pet.owner.includes(user._id);
+      console.log(response.data);
+      if (response.data.owner === user._id) {
+        setCanEdit(true);
+      } else {
+        setCanEdit(false);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }; */
+
   useEffect(() => {
     getPet();
   }, []);
 
-  const canEdit = pet && pet.owner.includes(user._id);
+  //setCanEdit [pet.owner.includes(user._id)]
 
   return (
     <div>
       {pet && (
         <>
           <div>
-
             <div>
               <img src={pet.image} alt="" />
             </div>
@@ -75,17 +115,13 @@ function PetDetails() {
 
             <Typography>Gender: {pet.gender ? "male" : "female"}</Typography>
 
-            {pet. age && (
-              <Typography>Age: {pet.age}</Typography>
-            )}
+            {pet.age && <Typography>Age: {pet.age}</Typography>}
 
             {pet.birthDate && (
               <Typography>Birth-date: {pet.birthDate}</Typography>
             )}
 
-            {pet.weight && (
-            <Typography>Weight {pet.weight}kg </Typography>
-            )}
+            {pet.weight && <Typography>Weight {pet.weight}kg </Typography>}
 
             {pet.sterilized && (
               <Typography>Sterilized: {pet.sterilized}</Typography>
@@ -94,38 +130,46 @@ function PetDetails() {
             <Typography>Species: {pet.species}</Typography>
 
             {pet.breed && (
-            <Typography>Breed of {pet.species}: {pet.breed}</Typography>
+              <Typography>
+                Breed of {pet.species}: {pet.breed}
+              </Typography>
             )}
 
             <Typography>Location: {pet.location}</Typography>
 
-            <Typography>About {pet.name}: {pet.description}</Typography>
+            <Typography>
+              About {pet.name}: {pet.description}
+            </Typography>
 
-            <Link to={`/profile/${pet.owner[0]._id}`} key={pet.owner._id}><Typography>Owner: {pet.owner[0].name}</Typography></Link>
+            <Link to={`/profile/${pet.owner[0]._id}`} key={pet.owner._id}>
+              <Typography>Owner: {pet.owner[0].name}</Typography>
+            </Link>
 
+            {/* TO EDIT / DELETE PET IF IT BELONGS TO THE USER: */}
 
-{/* TO EDIT / DELETE PET IF IT BELONGS TO THE USER: */}
-
-           {/*  {canEdit && (
-            )} */}
-
-              <Link to={`/pets/edit/${id}`}><StyledButton>Edit Pet</StyledButton></Link>
+            {canEdit && (
+              <>
+                <Link to={`/pets/edit/${id}`}>
+                  <StyledButton>Edit Pet</StyledButton>
+                </Link>
+                <StyledButton onClick={deletePet}>Delete Pet</StyledButton>
+              </>
+            )}
 
             {/* {pet.owner.includes(user._id) && (
               )} */}
 
-            <StyledButton onClick={deletePet}>Delete Pet</StyledButton>
-            
-
             {/* TO LIKE/UNLIKE PET */}
+            {pet && user && (
             <StyledButton
               primary={liked ? "true" : "false"}
-              disabled={liked}
+              
               onClick={likePet}
             >
               {liked ? "Liked" : "Like"}
             </StyledButton>
-            
+
+            )}
           </div>
         </>
       )}

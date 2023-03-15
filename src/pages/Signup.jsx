@@ -29,35 +29,14 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [description, setDescription] = useState("");
   const [userType, setUserType] = useState("valid");
-  const [image, setImage] = useState("");
 
   const handleName = (e) => setName(e.target.value);
   const handleEmail = (e) => setEmail(e.target.value);
   const handlePassword = (e) => setPassword(e.target.value);
   const handleDescription = (e) => setDescription(e.target.value);
   const handleUserType = (e) => setUserType(e.target.value);
-    
-    const navigate = useNavigate();
 
-    const handleFileUpload = async (e) => {
-      // console.log("The file to be uploaded is: ", e.target.files[0]);
-      
-      const uploadData = new FormData();
-      
-      // imageUrl => this name has to be the same as in the model since we pass
-      // req.body to .create() method when creating a new movie in '/api/movies' POST route
-      uploadData.append("image", e.target.files[0]);
-      
-      try {
-        const response = await axios.post(
-          `${import.meta.env.VITE_API_URL}/upload`,
-          uploadData
-          );
-          setImage(response.data.fileUrl);
-        } catch (error) {
-          console.log("Error while uploading the file: ", error);
-        }
-      };
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -65,7 +44,7 @@ function Signup() {
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/auth/signup`,
-        { name, email, password, description, userType, image }
+        { name, email, password, description, userType }
       );
 
       const notify = () => {
@@ -85,7 +64,9 @@ function Signup() {
   return (
     <Container>
       <StyledSection>
-        <Typography variant="h1" gutterBottom>Signup</Typography>
+        <Typography variant="h1" gutterBottom>
+          Signup
+        </Typography>
 
         <StyledForm onSubmit={handleSubmit}>
           <label htmlFor="name">
@@ -158,15 +139,6 @@ function Signup() {
               </RadioGroup>
             </FormControl>
           </Box>
-
-          <label htmlFor="image">Image:</label>
-        <input
-          type="file"
-          name="image"
-          placeholder="Profile Image"
-          onChange={handleFileUpload}
-          encType="multipart/form/data"
-        />
 
           <StyledButton type="submit" primary={true}>
             <Typography variant="h5">Create Account</Typography>

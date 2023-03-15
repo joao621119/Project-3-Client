@@ -205,13 +205,13 @@ function EditPet() {
         />
 
         <label htmlFor="image">Image:</label>
+        <img src={image}/>
         <input
           type="file"
           name="image"
           placeholder="Profile Image"
           onChange={handleFileUpload}
           encType="multipart/form/data"
-          value={image}
         />
 
         <label htmlFor="description">Description:</label>

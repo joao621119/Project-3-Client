@@ -66,6 +66,10 @@ class PetService {
   likePet = (id) => {
     return this.api.put(`/pets/like/${id}`);
   };
+  // Like a pet
+  unlikePet = (id) => {
+    return this.api.put(`/pets/unlike/${id}`);
+  };
 }
 
 const petService = new PetService();

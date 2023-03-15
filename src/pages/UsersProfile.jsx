@@ -85,7 +85,7 @@ function UsersProfile() {
             {profile.likedAssociations.map((association) => {
               return (
                 <>
-                  <Link to={`/pets/${pet._id}`} key={pet._id}>
+                  <Link to={`/associations/${association._id}`} key={association._id}>
                   <img src={association.image} alt="Association's image" />
                   <h1>{association.name}</h1>
                   <h2>Service: {association.service}</h2>
