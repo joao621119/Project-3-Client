@@ -10,7 +10,7 @@ function SearchPets({ searchPets }) {
   return (
     <div>
       <h2>Search Pets</h2>
-      <label htmlFor="search">Search:</label>
+      <label htmlFor="search">📍 Search:</label>
       <input type="text" name="search" value={search} onChange={handleSearch} />
     </div>
   );
