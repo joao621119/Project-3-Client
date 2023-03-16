@@ -74,7 +74,7 @@ function Pets() {
         <StyledButton onClick={() => filterBySpecies('bird')}>🐦</StyledButton>
     </div>
 
-    <Typography variant="h1" gutterBottom>Pets</Typography>
+    <Typography className="pageh1" variant="h1" gutterBottom>Pets</Typography>
 
     {loggedIn && (
       <Link to="/pets/add">

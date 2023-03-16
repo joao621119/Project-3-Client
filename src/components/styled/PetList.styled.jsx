@@ -2,24 +2,19 @@ import styled from 'styled-components';
 export const PetListSection = styled.section`
   margin-top: 2vh;
   height: 70vh;
-  background-color: #F9F1F0;
+  background-image: linear-gradient(#fadcd9, #f9f1f0);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   padding: 2rem;
 
+
   & > * {
     width: 100%;
     max-width: 1200px;
   }
 
-  h2 {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    text-align: center;
-    color: #F79489;
-  }
 
   ul {
     list-style: none;

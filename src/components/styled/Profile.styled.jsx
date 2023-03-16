@@ -8,7 +8,7 @@ export const StyledProfile = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #f9f1f0;
+  background-image: linear-gradient(#fadcd9, #f9f1f0);
   padding: 2rem;
 
   & > div {

@@ -8,11 +8,13 @@ text-align: center;
   flex-direction: column;
   align-items: center;
   background: linear-gradient(135deg, #F9F1F0, #FADCD9, #F8AFA6);
-
   padding: 2rem;
+
+ 
 
   & > div {
     margin: 1rem 0;
+
   }
 
   & > div:first-of-type {
@@ -27,13 +29,17 @@ text-align: center;
       object-fit: cover;
       border: 3px solid #F79489;
       margin-bottom: 1rem;
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* Add a shadow */
-      transition: all 0.3s ease-in-out; /* Add a transition effect */
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); 
+      transition: all 0.3s ease-in-out; 
     }
     & > img:hover {
-      transform: scale(1.1); /* Add a hover effect */
-      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5); /* Change the shadow on hover */
+      transform: scale(1.1); 
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
     }
+  }
+
+  #infoUserProfile{
+    max-width: 40vw;
   }
 
   & > div:last-of-type {

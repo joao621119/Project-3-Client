@@ -109,17 +109,18 @@ function UsersProfile() {
 
             {profile.interestedInPets.length > 0 && (
               <>
+              <StyledPetsForAdoption>
                 <Typography variant="h3">
                   The pets you're interested in:
                 </Typography>
-                <div>
                   {profile.interestedInPets.map((pet) => {
+               
                     return (
                       <Container key={pet._id}>
                         <Link to={`/pets/${pet._id}`}>
                           <div
                             style={{
-                              maxWidth: "90%",
+                              maxWidth: "100%",
                               maxHeight: "400px",
                               overflow: "hidden",
                             }}
@@ -140,7 +141,7 @@ function UsersProfile() {
                       </Container>
                     );
                   })}
-                </div>
+                </StyledPetsForAdoption>
               </>
             )}
 

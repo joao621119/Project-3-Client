@@ -6,10 +6,12 @@ export const StyledNavBar = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-around;
+  color: #F79489;
 
   button {
     font-size: 1.5rem;
     padding: 1vh 2vw 2vh 2vw;
+    color: #F9F1F0;
   }
 
   span {

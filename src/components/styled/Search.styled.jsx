@@ -12,9 +12,10 @@ justify-content: center;
   padding: 10px;
   background: linear-gradient(135deg, #F9F1F0, #FADCD9, #F8AFA6);
   border-radius: 10px;
-  margin-top: 20px;
+  margin: 5vh 0vw;
   width: 80%;
   max-width: 500px;
+  border: 1px solid #FA7373;
   }
 
   h4 {

@@ -7,9 +7,9 @@ export const StyledPetDetails = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #f9f1f0;
-  padding: 2rem;
-  margin-top: 5rem;
+  background-image: linear-gradient(#fadcd9, #f9f1f0);
+  padding: 3rem;
+  margin-top: 0rem;
 
   & > div {
     margin: 2rem 0;

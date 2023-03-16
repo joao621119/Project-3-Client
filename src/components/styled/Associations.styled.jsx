@@ -1,12 +1,6 @@
 import styled from "styled-components";
 
-export const StyledFooter = styled.div`
- import styled from "styled-components";
-import { Typography } from "@mui/material";
-import { StyledButton } from "./Button.styled";
-
-export const StyledPetDetails = styled.section`
-  /* Entire section */
+export const StyledAssociations = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,15 +22,20 @@ export const StyledPetDetails = styled.section`
       height: 200px;
       border-radius: 50%;
       object-fit: cover;
-      border: 3px solid #F79489;
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* Add a shadow */
-      transition: all 0.3s ease-in-out; /* Add a transition effect */
+      border: 3px solid #f79489;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease-in-out;
     }
 
     & > img:hover {
-      transform: scale(1.1); /* Add a hover effect */
-      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5); /* Change the shadow on hover */
+      transform: scale(1.1);
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
     }
+  }
+  .associationInfo{
+    text-align: center;
+    max-width: 60vw;
+    font-size: 1rem;
   }
 
   & > div:last-of-type {
@@ -44,37 +43,68 @@ export const StyledPetDetails = styled.section`
     flex-direction: column;
     align-items: center;
     text-align: center;
+    max-width: 800px;
+    border:
 
-    & > h4 {
-      color: #F79489;
+    & > h2 {
+      color: #f79489;
       margin: 0.5rem 0;
       font-size: 2rem;
       font-weight: 700;
     }
 
+    & > hr {
+      border: none;
+      height: 1px;
+      background-color: #f79489;
+      width: 100%;
+      margin: 2rem 0;
+    }
+
+    & > div {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      margin-bottom: 2rem;
+
+   
+
+      & > p {
+        color: #333;
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+        line-height: 1.5;
+        font-weight: 400;
+      }
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+
     & > p {
       color: #333;
-      margin: 0.5rem 0;
+      margin-top: 2rem;
       font-size: 1.2rem;
       line-height: 1.5;
       font-weight: 400;
     }
 
-    & > ${StyledButton} {
-      margin-top: 1rem;
-      background-color: #F79489;
+    & > a {
+      display: inline-block;
+      background-color: #f79489;
       color: #fff;
-      font-weight: 700;
-      padding: 0.8rem 2rem;
-      border-radius: 1rem;
-      text-transform: uppercase;
       font-size: 1.2rem;
-      transition: all 0.3s ease-in-out;
+      font-weight: 700;
+      text-align: center;
+      padding: 0.8rem 1.5rem;
+      border-radius: 0.5rem;
+      margin-top: 2rem;
+      transition: background-color 0.3s ease-in-out;
 
       &:hover {
-        background-color: #fff;
-        color: #F79489;
-        border: 2px solid #F79489;
+        background-color: #e9796f;
       }
     }
   }
@@ -84,52 +114,4 @@ export const StyledPetDetails = styled.section`
       max-width: 600px;
     }
   }
-`;
-
-export const StyledPetOwner = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-
-  .petOwnerImg {
-        height: 100%;
-        max-height: 300px;
-        width: auto;
-        margin-bottom: 2rem;
-      }
-
-    div {
-    display: flex;
-    flex-direction: column;
-    background-color: #FADCD9;
-    border-radius: 0.5rem;
-    padding: 2rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-
-    &:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    }
-
-    & > a {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-
-
-      & > ${StyledButton} {
-        margin-top: 1rem;
-      }
-    }
-
-    @media (min-width: 600px) {
-    & > div {
-      max-width: 600px;
-    }
-  }
-  }
-`;
 `;

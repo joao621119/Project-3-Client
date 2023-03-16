@@ -33,9 +33,11 @@ body{
 
 #footertag > div{
     align-items: center;
-    width: 250px;
+    width: 250px; 
+}
 
-    
+.pageh1{
+    color: #FA7373;
 }
 
 `;
