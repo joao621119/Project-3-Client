@@ -65,7 +65,10 @@ function Profile() {
               </>
             ) : (
               <>
+              {profile.phone && (
+
                 <Typography variant="h4">Phone number: ·········{profile.phone.slice(profile.phone.length - 3)}</Typography>
+              )}
               </>
             )}
           </div>

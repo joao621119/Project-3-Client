@@ -61,8 +61,12 @@ function PetDetails() {
   };
 
   const checkEdit = () => {
-    if (pet && pet.owner[0]._id === user._id) {
-      setCanEdit(true);
+    if(user) {
+      if (pet && pet.owner[0]._id === user._id) {
+        setCanEdit(true);
+      } else {
+        setCanEdit(false);
+      }
     } else {
       setCanEdit(false);
     }
