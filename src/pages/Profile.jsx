@@ -80,7 +80,7 @@ function Profile() {
               {profile.petsForAdoption.map((pet) => {
                 return (
                   <>
-                    <Link to="/pets/${pet._id}">
+                    <Link to={`/pets/${pet._id}`}> 
                       <img src={pet.image} alt="Pet's image" />
                       <p>{pet.name}</p>
                       <p>{pet.gender}</p>
