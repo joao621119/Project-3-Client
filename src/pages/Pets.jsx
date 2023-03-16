@@ -107,36 +107,28 @@ function Pets() {
                         sx={{
                           position: "absolute",
                           bottom: 0,
-                          width: "100%",
-                          backgroundColor: "rgba(0, 0, 0, 0.7)",
+                          width: "89%",
+                          backgroundColor: "rgba(248, 175, 166, 0.7)",
                           color: "white",
                           padding: "10px",
                           borderRadius: "0 0 16px 16px",
                         }}
                       >
 
-                      <Typography gutterBottom variant="h5" component="div">{pet.name}</Typography>
+                      <Typography gutterBottom variant="h4" component="div">{pet.name}</Typography>
 
                         <Typography
                           gutterBottom
-                          variant="body1"
+                          variant="h6"
                           component="div"
                         >
                           📍{pet.location}
                         </Typography>
 
-                          <Typography
-                            gutterBottom
-                            variant="body1"
-                            component="div"
-                          >
-                            {pet.species}
-                          </Typography>
-
                         {pet.breed && (
                           <Typography
                             gutterBottom
-                            variant="body1"
+                            variant="h6"
                             component="div"
                           >
                             {pet.species} breed: {pet.breed}

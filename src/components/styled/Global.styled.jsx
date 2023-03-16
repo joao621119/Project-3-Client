@@ -40,4 +40,17 @@ body{
     color: #FA7373;
 }
 
+a{
+    text-decoration: none;
+}
+
+button{
+    text-decoration: none;
+}
+
+Link {
+    text-decoration: none;
+    color: white;
+}
+
 `;

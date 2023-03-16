@@ -2,7 +2,6 @@ import styled from 'styled-components';
 export const PetListSection = styled.section`
   margin-top: 2vh;
   height: 70vh;
-  background-image: linear-gradient(#fadcd9, #f9f1f0);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -70,7 +69,7 @@ export const PetListSection = styled.section`
     display: block;
     margin: 1rem auto;
     padding: 0.5rem 1rem;
-    background-color: #F79489;
+ /*    background-color: #F79489; */
     color: white;
     border: none;
     border-radius: 25px;
