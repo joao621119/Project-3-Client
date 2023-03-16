@@ -4,6 +4,7 @@ import profileService from "../services/profile.service";
 import { Typography } from "@mui/material";
 import { StyledButton } from "../components/styled/Button.styled";
 import { Link } from "react-router-dom";
+import { StyledUserProfile, StyledPetsForAdoption } from "../components/styled/UsersProfile.styled";
 
 function UsersProfile() {
   const { user } = useContext(AuthContext);
@@ -26,7 +27,7 @@ function UsersProfile() {
     <div>
       {profile && (
         <>
-          <section>
+          <StyledUserProfile>
             <div>
               <img src={profile.image} alt="Profile Image" />
             </div>
@@ -48,36 +49,24 @@ function UsersProfile() {
             </div>
 
             {profile.petsForAdoption.length > 0 && (
-              <Typography>The pets you've put up for adoption:</Typography>
-            )}
-            
-            {profile.petsForAdoption.map((pet) => {
-              return (
-                <>
-                  <Link to={`/pets/${pet._id}`} key={pet._id}>
-                    <h1>{pet.name}</h1>
-                    <h2>{pet.species}</h2>
-                    <img src={pet.image} alt="" />
-                  </Link>
-                </>
-              );
-            })}
-
-            {profile.interestedInPets.length > 0 && (
-              <Typography>This are the pets you're interested in:</Typography>
-            )}
-            {profile.interestedInPets.map((pet) => {
-              return (
-                <>
-                  <h1>{pet.name}</h1>
-                  <h2>{pet.species}</h2>
-                  <img src={pet.image} alt="" />
-                  <Link to={`/pets/${pet._id}`} key={pet._id}>
-              <Typography>{pet.species}: {pet.name}</Typography>
+  <>
+    <Typography>The pets you've put up for adoption:</Typography>
+    <StyledPetsForAdoption>
+      {profile.petsForAdoption.map((pet) => {
+        return (
+          <div key={pet._id}>
+            <Link to={`/pets/${pet._id}`}>
+              <img src={pet.image} alt={pet.name} />
+              <h3>{pet.name}</h3>
+              <p>{pet.species}</p>
             </Link>
-                </>
-              );
-            })}
+            <StyledButton variant="outlined">Edit</StyledButton>
+          </div>
+        );
+      })}
+    </StyledPetsForAdoption>
+  </>
+)}
           
             {profile.likedAssociations.length > 0 && (
               <Typography>This are the associations you've liked:</Typography>
@@ -93,7 +82,7 @@ function UsersProfile() {
                 </>
               );
             })}
-          </section>
+          </StyledUserProfile>
         </>
       )}
     </div>
