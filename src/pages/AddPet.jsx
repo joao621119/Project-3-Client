@@ -65,7 +65,7 @@ function AddPet() {
     // imageUrl => this name has to be the same as in the model since we pass
     // req.body to .create() method when creating a new movie in '/api/movies' POST route
     uploadData.append("image", e.target.files[0]);
-    
+
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/upload`,
@@ -104,7 +104,6 @@ function AddPet() {
 
   return (
     <section>
-      
       <h1>Put up a Pet for Adoption!</h1>
 
       <StyledForm onSubmit={handleSubmit}>
@@ -113,7 +112,7 @@ function AddPet() {
           type="text"
           name="name"
           id="name"
-          placeholder="Ex: Mr. Finns"
+          placeholder="Whiskers"
           onChange={handleName}
         />
 
@@ -122,7 +121,7 @@ function AddPet() {
           type="text"
           name="species"
           id="species"
-          placeholder="Ex: Dolphin"
+          placeholder="Cat"
           onChange={handleSpecies}
         />
 
@@ -131,7 +130,7 @@ function AddPet() {
           type="text"
           name="breed"
           id="breed"
-          placeholder="Ex: Dolphinny Dolphin"
+          placeholder="Mixed breed"
           onChange={handleBreed}
         />
 
@@ -174,7 +173,7 @@ function AddPet() {
             <FormLabel id="userTypeLabel">
               <Typography variant="h4">Gender:</Typography>
             </FormLabel>
-            
+
             <RadioGroup
               name="gender"
               value={gender}
@@ -210,7 +209,7 @@ function AddPet() {
           type="number"
           name="weight"
           id="weight"
-          placeholder="In KG"
+          placeholder="In Kg"
           onChange={handleWeight}
         />
 
@@ -241,8 +240,9 @@ function AddPet() {
           encType="multipart/form/data"
         />
 
-        <StyledButton variant="primary" type="submit">Add this Pet</StyledButton>
-
+        <StyledButton variant="primary" type="submit">
+          Add this Pet
+        </StyledButton>
       </StyledForm>
     </section>
   );
