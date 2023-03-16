@@ -53,9 +53,9 @@ function associationDetails() {
 
             <Typography variant="h3">Provided services: {association.service}</Typography>
             
-            <Typography variant="h3">About {association.name}: {association.description}</Typography>
+            <Typography variant="h3">Description: {association.description}</Typography>
 
-            {association.usersLikes && (
+            {association.usersLikes.length > 0 && (
               <Typography>Liked by {association.usersLikes.length} Users</Typography>
             )}
 

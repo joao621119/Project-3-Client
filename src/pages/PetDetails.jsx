@@ -6,6 +6,10 @@ import { Typography, Button } from "@mui/material";
 import { StyledButton } from "../components/styled/Button.styled";
 import { AuthContext } from "../context/auth.context";
 import profileService from "../services/profile.service";
+import {
+  StyledPetDetails,
+  StyledPetOwner,
+} from "../components/styled/PetDetails.styled";
 
 function PetDetails() {
   const [pet, setPet] = useState(null);
@@ -27,7 +31,7 @@ function PetDetails() {
       // console.log(response.data.owner[0]._id);
 
       setPet(response.data);
-      console.log(response.data)
+      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -35,19 +39,17 @@ function PetDetails() {
 
   const likePet = async () => {
     try {
-      if(liked){
-        console.log(liked)
-        
+      if (liked) {
+        console.log(liked);
+
         const response = await petService.unlikePet(id);
       } else {
-        console.log(liked)
+        console.log(liked);
         const response = await petService.likePet(id);
-
       }
 
-
-      getPet()
-      checkLike()
+      getPet();
+      checkLike();
     } catch (error) {
       console.log(error);
     }
@@ -64,7 +66,7 @@ function PetDetails() {
   };
 
   const checkEdit = () => {
-    if(user) {
+    if (user) {
       if (pet && pet.owner[0]._id === user._id) {
         setCanEdit(true);
       } else {
@@ -76,16 +78,19 @@ function PetDetails() {
   };
 
   const checkLike = () => {
-    if (pet && pet.interestedUsers .find(interested => interested  === user._id)) {
+    if (
+      pet &&
+      pet.interestedUsers.find((interested) => interested === user._id)
+    ) {
       setLiked(true);
     } else {
       setLiked(false);
     }
   };
-  
+
   useEffect(() => {
     checkEdit();
-    checkLike()
+    checkLike();
   }, [user, pet]);
   /*  const userCanEdit = async () => {
     try {
@@ -110,47 +115,27 @@ function PetDetails() {
   //setCanEdit [pet.owner.includes(user._id)]
 
   return (
-    <div>
+    <StyledPetDetails>
       {pet && (
         <>
           <div>
-            <div>
-              <img src={pet.image} alt="" />
-            </div>
+            <img src={pet.image} alt="" />
+          </div>
 
-            <h1>{pet.name}</h1>
+          <div>
+            <Typography variant="h2">{pet.name}</Typography>
+          </div>
 
-            <Typography>Gender: {pet.gender ? "male" : "female"}</Typography>
-
-            {pet.age && <Typography>Age: {pet.age}</Typography>}
-
-            {pet.birthDate && (
-              <Typography>Birth-date: {pet.birthDate}</Typography>
+          <div>
+            {/* TO LIKE/UNLIKE PET */}
+            {pet && user && (
+              <StyledButton
+                primary={liked ? "true" : "false"}
+                onClick={likePet}
+              >
+                {liked ? "Liked" : "Like"}
+              </StyledButton>
             )}
-
-            {pet.weight && <Typography>Weight {pet.weight}kg </Typography>}
-
-            {pet.sterilized && (
-              <Typography>Sterilized: {pet.sterilized}</Typography>
-            )}
-
-            <Typography>Species: {pet.species}</Typography>
-
-            {pet.breed && (
-              <Typography>
-                Breed of {pet.species}: {pet.breed}
-              </Typography>
-            )}
-
-            <Typography>Location: {pet.location}</Typography>
-
-            <Typography>
-              About {pet.name}: {pet.description}
-            </Typography>
-
-            <Link to={`/profile/${pet.owner[0]._id}`} key={pet.owner._id}>
-              <Typography>Owner: {pet.owner[0].name}</Typography>
-            </Link>
 
             {/* TO EDIT / DELETE PET IF IT BELONGS TO THE USER: */}
 
@@ -162,27 +147,72 @@ function PetDetails() {
                 <StyledButton onClick={deletePet}>Delete Pet</StyledButton>
               </>
             )}
+          </div>
 
-            {/* {pet.owner.includes(user._id) && (
-              )} */}
+          <div id="petInfoContainer">
+            <Typography variant="h5" gutterBottom>
+              Gender: {pet.gender ? "Male" : "Female"}
+            </Typography>
 
-            {/* TO LIKE/UNLIKE PET */}
-            {pet && user && (
-            <StyledButton
-              primary={liked ? "true" : "false"}
-              
-              onClick={likePet}
-            >
-              {liked ? "Liked" : "Like"}
-            </StyledButton>
-
+            {pet.age && (
+              <Typography variant="h5" gutterBottom>Age: {pet.age} years old</Typography>
             )}
+
+            {/*   {pet.birthDate && (
+              <Typography variant="h5" gutterBottom>Birth-date: {pet.birthDate}</Typography>
+            )} */}
+
+            {pet.weight && (
+              <Typography variant="h5" gutterBottom>
+                Weight {pet.weight} kg{" "}
+              </Typography>
+            )}
+
+            {/* {pet.sterilized && (
+              <Typography variant="h5" gutterBottom>Sterilized: {pet.sterilized}</Typography>
+            )} */}
+
+            <Typography variant="h5" gutterBottom>
+              Type of animal: {pet.species}
+            </Typography>
+
+            {pet.breed && (
+              <Typography variant="h5" gutterBottom>
+                Breed of {pet.species}: {pet.breed}
+              </Typography>
+            )}
+
+            <Typography variant="h5" gutterBottom>
+              Location: {pet.location}
+            </Typography>
+
+            <Typography variant="h5" gutterBottom>
+              About {pet.name}: {pet.description}
+            </Typography>
+            <StyledPetOwner>
+              <Link to={`/profile/${pet.owner[0]._id}`} key={pet.owner._id}>
+                <div>
+                  <img
+                    className="petOwnerImg"
+                    src={pet.owner[0].image}
+                    alt="Pets owner"
+                  />
+
+                  <Typography variant="h5">
+                    {pet.name}'s owner: {pet.owner[0].name}
+                  </Typography>
+                  <Typography variant="h5">
+                    Owner: {pet.owner[0].location}
+                  </Typography>
+                </div>
+              </Link>
+            </StyledPetOwner>
           </div>
         </>
       )}
 
       {deleted && <p>Pet has been deleted</p>}
-    </div>
+    </StyledPetDetails>
   );
 }
 

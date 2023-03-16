@@ -38,7 +38,7 @@ function UsersProfile() {
             <div>
               <Link to={`/profile/edit/${profile._id}`}>
                 <StyledButton primary={true}>
-                  <Typography variant="h4">Edit Profile</Typography>
+                  <Typography variant="h4">Edit</Typography>
                 </StyledButton>
               </Link>
             </div>
@@ -48,7 +48,7 @@ function UsersProfile() {
                 {profile.name}
               </Typography>
               <Typography variant="h4" gutterBottom>
-                Gender:{profile.gender}
+                Gender: {profile.gender}
               </Typography>
               <Typography variant="h4" gutterBottom>
                 Age: {profile.age}
@@ -57,7 +57,7 @@ function UsersProfile() {
                 Location: {profile.location}
               </Typography>
               <Typography variant="h4" gutterBottom>
-                About {profile.description}
+                Your description: {profile.description}
               </Typography>
             </div>
 
@@ -73,7 +73,47 @@ function UsersProfile() {
                         <Link to={`/pets/${pet._id}`}>
                           <div
                             style={{
-                              maxWidth: "100%",
+                              maxWidth: "90%",
+                              maxHeight: "400px",
+                              overflow: "hidden",
+                            }}
+                          >
+                            <img
+                              style={{ width: "100%", height: "auto" }}
+                              src={pet.image}
+                              alt={pet.name}
+                            />
+                          </div>
+                          <Typography variant="h4" gutterBottom>
+                            {pet.name}
+                          </Typography>
+                          <Typography variant="h4" gutterBottom>
+                            Species: {pet.species}
+                          </Typography>
+                        </Link>
+                        <Link to={`/pets/edit/${pet._id}`}>
+                          <StyledButton variant="outlined">Edit this pet</StyledButton>
+                        </Link>
+                      </Container>
+                    );
+                  })}
+                </StyledPetsForAdoption>
+              </>
+            )}
+
+            {profile.interestedInPets.length && (
+              <>
+                <Typography variant="h3">
+                  The pets you're interested in:
+                </Typography>
+                <div>
+                  {profile.interestedInPets.map((pet) => {
+                    return (
+                      <Container key={pet._id}>
+                        <Link to={`/pets/${pet._id}`}>
+                          <div
+                            style={{
+                              maxWidth: "90%",
                               maxHeight: "400px",
                               overflow: "hidden",
                             }}
@@ -91,13 +131,10 @@ function UsersProfile() {
                             {pet.species}
                           </Typography>
                         </Link>
-                        <Link to={`/pets/edit/${pet._id}`}>
-                          <StyledButton variant="outlined">Edit</StyledButton>
-                        </Link>
                       </Container>
                     );
                   })}
-                </StyledPetsForAdoption>
+                </div>
               </>
             )}
 

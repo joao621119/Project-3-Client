@@ -103,13 +103,23 @@ function EditProfile() {
       console.log(error);
     }
   };
-
+  
   return (
     <section>
 
       <h1>Edit Profile:</h1>
 
       <StyledForm onSubmit={handleSubmit}>
+        
+      <label htmlFor="image">Image:</label>
+      <input
+        type="file"
+        name="image"
+        placeholder="Profile Image"
+        onChange={handleFileUpload}
+        encType="multipart/form/data"
+      />
+
         <label htmlFor="name">Name</label>
         <input
           type="text"
@@ -173,14 +183,6 @@ function EditProfile() {
           onChange={handleGender}
         />
 
-        <label htmlFor="image">Image:</label>
-        <input
-          type="file"
-          name="image"
-          placeholder="Profile Image"
-          onChange={handleFileUpload}
-          encType="multipart/form/data"
-        />
 
         <StyledButton primary={true} type="submit">Save Changes</StyledButton>
       </StyledForm>

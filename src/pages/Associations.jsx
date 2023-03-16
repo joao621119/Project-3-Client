@@ -42,7 +42,7 @@ function AssociationsList() {
   return (
     <Container>
 
-      <Search searchItems={searchItems} />
+      {/* <Search searchItems={searchItems} /> */}
 
       <Typography variant="h1" gutterBottom>Associations</Typography>
 
@@ -86,7 +86,15 @@ function AssociationsList() {
                           component="div"
                         >
                           {/* Replace with the relevant fields for the new model */}
-                          {item.location} - {item.services}
+                          📍 {item.location}
+                        </Typography>
+                        <Typography
+                          gutterBottom
+                          variant="body1"
+                          component="div"
+                        >
+                          {/* Replace with the relevant fields for the new model */}
+                          Services: {item.service}
                         </Typography>
                       </CardContent>
 

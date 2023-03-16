@@ -42,13 +42,13 @@ function Profile() {
           )}
 
           <div>
-            <Typography variant="h3">{profile.name}</Typography>
+            <Typography variant="h4">{profile.name}</Typography>
 
             {profile.gender && (
-              <Typography gutterBottom variant="body1" component="div">Gender: {profile.gender}</Typography>
+              <Typography gutterBottom variant="h4" component="div">Gender: {profile.gender}</Typography>
             )}
             {profile.age && (
-              <Typography variant="h3">Age: {profile.age}</Typography>
+              <Typography variant="h4">Age: {profile.age}</Typography>
             )}
 
             {loggedIn ? (

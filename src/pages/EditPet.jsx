@@ -23,7 +23,7 @@ function EditPet() {
   const [age, setAge] = useState(0);
   const [weight, setWeight] = useState(0);
   const [gender, setGender] = useState(true);
-  const [sterilized, setSterilized] = useState(true);
+  /* const [sterilized, setSterilized] = useState(true); */
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
 
@@ -34,7 +34,7 @@ function EditPet() {
   const handleAge = (e) => setAge(e.target.value);
   const handleWeight = (e) => setWeight(e.target.value);
   const handleGender = (e) => setGender(e.target.value);
-  const handleSterilized = (e) => setSterilized(e.target.value);
+  /* const handleSterilized = (e) => setSterilized(e.target.value); */
   const handleDescription = (e) => setDescription(e.target.value);
   /* const handleImage = (e) => setImage(e.target.value); */
 
@@ -75,7 +75,7 @@ function EditPet() {
       setWeight(response.data.weight);
       setImage(response.data.image);
       setGender(response.data.gender);
-      setSterilized(response.data.sterilized);
+      /* setSterilized(response.data.sterilized); */
       setDescription(response.data.description);
     } catch (error) {
       console.log(error);
@@ -105,7 +105,7 @@ function EditPet() {
       age,
       weight,
       gender,
-      sterilized,
+      /* sterilized, */
       image,
       description,
       location,
@@ -118,12 +118,22 @@ function EditPet() {
       console.log(error);
     }
   };
-
+  
   return (
     <section>
       <h1>Edit {id.name}:</h1>
 
       <StyledForm onSubmit={handleSubmit}>
+        <label htmlFor="image">Image:</label>
+        <img src={image}/>
+        <input
+          type="file"
+          name="image"
+          placeholder="Profile Image"
+          onChange={handleFileUpload}
+          encType="multipart/form/data"
+        />
+        
         <label htmlFor="name">Name</label>
         <input
           type="text"
@@ -133,7 +143,7 @@ function EditPet() {
           onChange={handleName}
         />
 
-        <label htmlFor="species">Species:</label>
+        <label htmlFor="species">Type of animal:</label>
         <input
           type="text"
           name="species"
@@ -195,24 +205,14 @@ function EditPet() {
           </FormControl>
         </Box>
 
-        <label htmlFor="sterilized">Sterilized:</label>
+       {/*  <label htmlFor="sterilized">Sterilized:</label>
         <input
           type="radio"
           name="sterilized"
           id="sterilized"
-          /* value={} */
           onChange={handleSterilized}
-        />
+        /> */}
 
-        <label htmlFor="image">Image:</label>
-        <img src={image}/>
-        <input
-          type="file"
-          name="image"
-          placeholder="Profile Image"
-          onChange={handleFileUpload}
-          encType="multipart/form/data"
-        />
 
         <label htmlFor="description">Description:</label>
         <input

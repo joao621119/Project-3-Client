@@ -19,22 +19,22 @@ function Navbar() {
             <Link to="/">
               <PetsIcon sx={{ fontSize: "3rem", color: "#F79489" }} />
             </Link>
-            <Typography variant="h5">Hello {user.name}</Typography>
+            <Typography variant="h5">Welcome back, {user.name}!</Typography>
             <Link to="/pets">
               <StyledButton>
-                <Typography variant="h5">Pets</Typography>
+                <Typography variant="h5">Find a Pet</Typography>
               </StyledButton>
             </Link>
 
             <Link to="/associations">
               <StyledButton>
-                <Typography variant="h5">Associations</Typography>
+                <Typography variant="h5">Pet Associations</Typography>
               </StyledButton>
             </Link>
 
             <Link to="/profile">
               <StyledButton>
-                <Typography variant="h5">Profile</Typography>
+                <Typography variant="h5">Your Profile</Typography>
               </StyledButton>
             </Link>
 
@@ -49,12 +49,12 @@ function Navbar() {
             </Link>
             <Link to="/pets">
               <StyledButton>
-                <Typography variant="h5">Pets</Typography>
+                <Typography variant="h5">Find a Pets</Typography>
               </StyledButton>
             </Link>
             <Link to="/associations">
               <StyledButton>
-                <Typography variant="h5">Associations</Typography>
+                <Typography variant="h5">Pet Associations</Typography>
               </StyledButton>
             </Link>
             <Link to="/signup">

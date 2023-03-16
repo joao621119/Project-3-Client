@@ -139,7 +139,7 @@ function Pets() {
                             variant="body1"
                             component="div"
                           >
-                            {pet.breed}
+                            {pet.species} breed: {pet.breed}
                           </Typography>
                         )}
                         
