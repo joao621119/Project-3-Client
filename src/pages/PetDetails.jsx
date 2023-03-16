@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import petService from "../services/pet.service";
 import { Typography, Button } from "@mui/material";
 import { StyledButton } from "../components/styled/Button.styled";
@@ -16,6 +16,8 @@ function PetDetails() {
   const { user } = useContext(AuthContext);
   // console.log("this is the user", user);
   const { id } = useParams();
+
+  const navigate = useNavigate();
 
   const storedToken = localStorage.getItem("authToken");
 
@@ -53,8 +55,9 @@ function PetDetails() {
 
   const deletePet = async () => {
     try {
-      await petService.deletePet(id);
+      await petService.deletePet(id); // Navigate here
       setDeleted(true);
+      navigate(`/profile`); // Redirect
     } catch (error) {
       console.log(error);
     }

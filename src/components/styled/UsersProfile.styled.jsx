@@ -76,30 +76,20 @@ export const StyledPetsForAdoption = styled.div`
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     }
 
-    & > h3 {
-      color: #F79489;
-      margin: 0.5rem 0;
-    }
+    & > a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
 
-    & > p {
-      color: #555;
-      margin: 0.5rem 0;
-    }
+      & > img {
+        height: 100%;
+        width: auto;
+        margin-bottom: 1rem;
+      }
 
-    & > img {
-      max-height: 200px;
-      object-fit: cover;
-      border-radius: 0.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    & > ${StyledButton} {
-      margin-top: auto;
-      background-color: #F8AFA6;
-      color: #fff;
-
-      &:hover {
-        background-color: #F79489;
+      & > ${StyledButton} {
+        margin-top: 1rem;
       }
     }
   }

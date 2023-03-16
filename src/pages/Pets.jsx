@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import petService from "../services/pet.service";
@@ -6,6 +6,7 @@ import { StyledSection } from "../components/styled/Section.styled";
 import { PetListSection } from "../components/styled/PetList.styled";
 import { StyledButton } from "../components/styled/Button.styled";
 import SearchPets from "../components/SearchPets";
+import { AuthContext } from "../context/auth.context";
 
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -15,6 +16,7 @@ import { CardActionArea, Container } from "@mui/material";
 import Grid from "@mui/material/Grid";
 
 function Pets() {
+  const { loggedIn, user, logout } = useContext(AuthContext);
   const [pets, setPets] = useState([]); // Main array of pets
   const [showPet, setShowPet] = useState([]); // Filtered array of pets (search)
   const [selectedSpecies, setSelectedSpecies] = useState(null);
@@ -74,9 +76,11 @@ function Pets() {
 
     <Typography variant="h1" gutterBottom>Pets</Typography>
 
+    {loggedIn && (
       <Link to="/pets/add">
         <StyledButton primary={true}><Typography>Add a pet</Typography></StyledButton>
       </Link>
+)}
 
       <PetListSection>
 
