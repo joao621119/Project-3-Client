@@ -2,16 +2,17 @@ import styled from "styled-components";
 import { Typography } from "@mui/material";
 import { StyledButton } from "./Button.styled";
 
-export const StyledUserProfile = styled.section`
-text-align: center;
+export const StyledProfile = styled.section`
+  /* Entire section */
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: ; background-image: linear-gradient(#FADCD9, #F9F1F0);
+  background-color: #f9f1f0;
   padding: 2rem;
 
   & > div {
-    margin: 1rem 0;
+    margin: 2rem 0;
   }
 
   & > div:first-of-type {
@@ -24,8 +25,14 @@ text-align: center;
       height: 200px;
       border-radius: 50%;
       object-fit: cover;
-      border: 3px solid #F79489;
-      margin-bottom: 1rem;
+      border: 3px solid #f79489;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* Add a shadow */
+      transition: all 0.3s ease-in-out; /* Add a transition effect */
+    }
+
+    & > img:hover {
+      transform: scale(1.1); /* Add a hover effect */
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5); /* Change the shadow on hover */
     }
   }
 
@@ -36,7 +43,7 @@ text-align: center;
     text-align: center;
 
     & > h4 {
-      color: #F79489;
+      color: #f79489;
       margin: 0.5rem 0;
     }
 
@@ -57,18 +64,25 @@ text-align: center;
   }
 `;
 
-export const StyledPetsForAdoption = styled.div`
+export const StyledForAdoption = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
 
-  & > div {
+  .petImg {
+    height: 100%;
+    max-height: 300px;
+    width: auto;
+    margin-bottom: 2rem;
+  }
+
+  div {
     display: flex;
     flex-direction: column;
-    background-color: #FADCD9;
+    background-color: #fadcd9;
     border-radius: 0.5rem;
-    padding: 1rem;
+    padding: 2rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 
@@ -83,14 +97,14 @@ export const StyledPetsForAdoption = styled.div`
       align-items: center;
       text-align: center;
 
-      & > img {
-        height: 100%;
-        width: auto;
-        margin-bottom: 1rem;
-      }
-
       & > ${StyledButton} {
         margin-top: 1rem;
+      }
+    }
+
+    @media (min-width: 600px) {
+      & > div {
+        max-width: 600px;
       }
     }
   }

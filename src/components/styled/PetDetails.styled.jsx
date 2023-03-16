@@ -3,13 +3,13 @@ import { Typography } from "@mui/material";
 import { StyledButton } from "./Button.styled";
 
 export const StyledPetDetails = styled.section`
-
-/* Entire section */
+  /* Entire section */
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #F9F1F0;
+  background-color: #fff;
   padding: 2rem;
+  margin-top: 5rem;
 
   & > div {
     margin: 2rem 0;
@@ -21,19 +21,19 @@ export const StyledPetDetails = styled.section`
     align-items: center;
 
     & > img {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid #F79489;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* Add a shadow */
-  transition: all 0.3s ease-in-out; /* Add a transition effect */
-}
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #F79489;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* Add a shadow */
+      transition: all 0.3s ease-in-out; /* Add a transition effect */
+    }
 
-& > img:hover {
-  transform: scale(1.1); /* Add a hover effect */
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5); /* Change the shadow on hover */
-}
+    & > img:hover {
+      transform: scale(1.1); /* Add a hover effect */
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5); /* Change the shadow on hover */
+    }
   }
 
   & > div:last-of-type {
@@ -45,15 +45,34 @@ export const StyledPetDetails = styled.section`
     & > h4 {
       color: #F79489;
       margin: 0.5rem 0;
+      font-size: 2rem;
+      font-weight: 700;
     }
 
     & > p {
-      color: #555;
+      color: #333;
       margin: 0.5rem 0;
+      font-size: 1.2rem;
+      line-height: 1.5;
+      font-weight: 400;
     }
 
     & > ${StyledButton} {
       margin-top: 1rem;
+      background-color: #F79489;
+      color: #fff;
+      font-weight: 700;
+      padding: 0.8rem 2rem;
+      border-radius: 1rem;
+      text-transform: uppercase;
+      font-size: 1.2rem;
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        background-color: #fff;
+        color: #F79489;
+        border: 2px solid #F79489;
+      }
     }
   }
 

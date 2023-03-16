@@ -10,7 +10,7 @@ function Home() {
     <StyledHome>
       <h1>Welcome to Pawesome</h1>
 
-      <p>The best place to find a new Best Friend! ❤️</p>
+      <p>The best place to find a new Best Friend!</p>
       </StyledHome>
 
     </Container>

@@ -10,7 +10,8 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import { CardActionArea } from "@mui/material";
 import Typography from "@mui/material/Typography";
-import { StyledSection } from "../components/styled/Section.styled";
+import { StyledProfile, StyledForAdoption } from "../components/styled/Profile.styled";
+import { Container } from "@mui/system";
 
 function Profile() {
   const { loggedIn, user } = useContext(AuthContext);
@@ -32,7 +33,7 @@ function Profile() {
   }, []);
 
   return (
-    <StyledSection>
+    <StyledProfile>
       {profile && (
         <>
           {profile.image && (
@@ -73,28 +74,30 @@ function Profile() {
             )}
           </div>
           {!profile.petsForAdoption.length && (
-            <Typography>{profile.name} has no pets up for adoption</Typography>
+            <Typography variant="h5">{profile.name} has no pets up for adoption</Typography>
           )}
 
           {profile.petsForAdoption.length > 0 && (
-            <div>
-              <Typography>Check out the pets {profile.name} has put up for adoption:{" "}</Typography>
-
+            <>
+              <Typography variant="h4">Check out the pets {profile.name} has put up for adoption:{" "}</Typography>
+            <StyledForAdoption class="petForAdoptionCard">
               {profile.petsForAdoption.map((pet) => {
                 return (
-                  <>
+                  <div className="petForAdoptionCard">
                     <Link to={`/pets/${pet._id}`}> 
-                      <img src={pet.image} alt="Pet's image" />
-                      <p>{pet.name}</p>
-                      <p>{pet.gender}</p>
+                      <img class="petImg" src={pet.image} alt="Pet's image" />
+                      <Typography variant="h4">{pet.name}</Typography>
+                      </Link>
+                      <Typography variant="h4">{pet.gender}</Typography>
                       {pet.age && (
-                        <p>{pet.age}</p>
+                        <Typography variant="h4">{pet.age}</Typography>
                       )}
-                    </Link>
-                  </>
+                    
+                  </div>
                 );
               })}
-            </div>
+              </StyledForAdoption>
+            </>
           )}
 
           {profile.likedAssociations.length > 0 && (
@@ -117,7 +120,7 @@ function Profile() {
           )}
         </>
       )}
-    </StyledSection>
+    </StyledProfile>
   );
 }
 

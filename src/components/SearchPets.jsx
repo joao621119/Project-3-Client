@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { StyledSearch } from "./styled/Search.styled";
 
 function SearchPets({ searchPets }) {
   const [search, setSearch] = useState("");
@@ -8,11 +9,11 @@ function SearchPets({ searchPets }) {
     searchPets(e.target.value);
   };
   return (
-    <div>
+    <StyledSearch>
       <h2>Search Pets</h2>
       <label htmlFor="search">Search:</label>
       <input type="text" name="search" value={search} onChange={handleSearch} />
-    </div>
+    </StyledSearch>
   );
 }
 

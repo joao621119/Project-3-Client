@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { StyledSearch } from "../components/styled/Search.styled"
+import { Typography } from "@mui/material";
 
 function SearchPets({ searchPets }) {
   const [search, setSearch] = useState("");
@@ -8,11 +10,13 @@ function SearchPets({ searchPets }) {
     searchPets(e.target.value);
   };
   return (
+    
     <div>
-      <h2>Search Pets</h2>
-      <label htmlFor="search">📍 Search:</label>
-      <input type="text" name="search" value={search} onChange={handleSearch} />
+      <Typography variant="h4">Search Pets</Typography>
+      <label id="searchLabel" htmlFor="search">📍 Search:</label>
+      <input id="searchInput" type="text" name="search" value={search} onChange={handleSearch} />
     </div>
+    
   );
 }
 

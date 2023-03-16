@@ -8,9 +8,8 @@ function Footer() {
       <div>
         <p>About Pawesome</p>
         <p>Pawesome is a React Web Application destined for people looking to adopt and give pets up for adoption.
-          This is our third project made during our IronHack boot camp.
-          Mar-2023
-        </p>
+          This is our third project made during our IronHack boot camp.</p>
+          <p>Mar-2023</p>
       </div>
 
       <div>

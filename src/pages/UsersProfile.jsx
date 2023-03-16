@@ -84,7 +84,7 @@ function UsersProfile() {
                               alt={pet.name}
                             />
                           </div>
-                          <Typography variant="h4" gutterBottom>
+                          <Typography variant="h3" gutterBottom>
                             {pet.name}
                           </Typography>
                           <Typography variant="h4" gutterBottom>
@@ -101,7 +101,7 @@ function UsersProfile() {
               </>
             )}
 
-            {profile.interestedInPets.length && (
+            {profile.interestedInPets.length > 0 && (
               <>
                 <Typography variant="h3">
                   The pets you're interested in:
@@ -138,7 +138,7 @@ function UsersProfile() {
               </>
             )}
 
-            {profile.likedAssociations.length > 0 && (
+            {/* {profile.likedAssociations.length > 0 && (
               <Typography>This are the associations you've liked:</Typography>
             )}
             {profile.likedAssociations.map((association) => {
@@ -156,7 +156,7 @@ function UsersProfile() {
                   </Link>
                 </>
               );
-            })}
+            })} */}
           </StyledUserProfile>
         </>
       )}

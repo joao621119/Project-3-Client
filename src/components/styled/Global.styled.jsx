@@ -34,5 +34,8 @@ body{
 #footertag > div{
     align-items: center;
     width: 250px;
+
+    
 }
+
 `;

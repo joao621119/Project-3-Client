@@ -4,7 +4,6 @@ import { Routes, Route } from "react-router-dom";
 // Importing Components:
 import Private from "./components/Private";
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 // Importing Pages:
 import Home from "./pages/Home";
 import Signup from "./pages/Signup";
@@ -68,7 +67,6 @@ function App() {
         
       </Routes>
 
-      <Footer />
     </div>
   );
 }
