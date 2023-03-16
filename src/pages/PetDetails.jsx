@@ -128,7 +128,7 @@ function PetDetails() {
 
           <div>
             {/* TO LIKE/UNLIKE PET */}
-            {pet && user && (
+            {!canEdit && pet && user && (
               <StyledButton
                 primary={liked ? "true" : "false"}
                 onClick={likePet}
@@ -164,7 +164,7 @@ function PetDetails() {
 
             {pet.weight && (
               <Typography variant="h5" gutterBottom>
-                Weight {pet.weight} kg{" "}
+                Weight: {pet.weight} kg
               </Typography>
             )}
 
@@ -183,12 +183,15 @@ function PetDetails() {
             )}
 
             <Typography variant="h5" gutterBottom>
-              Location: {pet.location}
+              Pick-ip location: {pet.location}
             </Typography>
 
             <Typography variant="h5" gutterBottom>
               About {pet.name}: {pet.description}
             </Typography>
+
+{user._id !== pet.owner[0]._id && (
+  
             <StyledPetOwner>
               <Link to={`/profile/${pet.owner[0]._id}`} key={pet.owner._id}>
                 <div>
@@ -201,12 +204,16 @@ function PetDetails() {
                   <Typography variant="h5">
                     {pet.name}'s owner: {pet.owner[0].name}
                   </Typography>
-                  <Typography variant="h5">
-                    Owner: {pet.owner[0].location}
-                  </Typography>
+                  {pet.owner[0].phone && (
+                    <Typography variant="h5">{pet.owner[0].name}'s phone number: {pet.owner[0].phone}</Typography>
+                  )}
+                  {!pet.owner[0].phone && (
+                    <Typography variant="h5">{pet.owner[0].name}'s email: {pet.owner[0].email}</Typography>
+                  )}
                 </div>
               </Link>
             </StyledPetOwner>
+)}
           </div>
         </>
       )}

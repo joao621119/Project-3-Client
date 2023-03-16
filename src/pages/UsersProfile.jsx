@@ -38,12 +38,12 @@ function UsersProfile() {
             <div>
               <Link to={`/profile/edit/${profile._id}`}>
                 <StyledButton primary={true}>
-                  <Typography variant="h4">Edit</Typography>
+                  <Typography variant="h5">Edit</Typography>
                 </StyledButton>
               </Link>
             </div>
 
-            <div>
+            <div id="infoUserProfile">
               <Typography variant="h4" gutterBottom>
                 {profile.name}
               </Typography>
@@ -98,8 +98,14 @@ function UsersProfile() {
                     );
                   })}
                 </StyledPetsForAdoption>
+              <Link to={"/pets/add"}>
+                <StyledButton primary={true}>
+                  <Typography variant="h4">Add a pet</Typography>
+                </StyledButton>
+              </Link>
               </>
             )}
+
 
             {profile.interestedInPets.length > 0 && (
               <>

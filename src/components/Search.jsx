@@ -10,12 +10,13 @@ function SearchPets({ searchPets }) {
     searchPets(e.target.value);
   };
   return (
-    
-    <div>
+  <StyledSearch>
+    <div class="searchPosition">
       <Typography variant="h4">Search Pets</Typography>
       <label id="searchLabel" htmlFor="search">📍 Search:</label>
       <input id="searchInput" type="text" name="search" value={search} onChange={handleSearch} />
     </div>
+    </StyledSearch>
     
   );
 }

@@ -1,4 +1,7 @@
 import styled from "styled-components";
+
+export const StyledFooter = styled.div`
+ import styled from "styled-components";
 import { Typography } from "@mui/material";
 import { StyledButton } from "./Button.styled";
 
@@ -128,4 +131,5 @@ export const StyledPetOwner = styled.div`
     }
   }
   }
+`;
 `;

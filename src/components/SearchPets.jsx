@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import React, { useState } from "react";
 import { StyledSearch } from "./styled/Search.styled";
 
@@ -10,9 +11,11 @@ function SearchPets({ searchPets }) {
   };
   return (
     <StyledSearch>
-      <h2>Search Pets</h2>
-      <label htmlFor="search">Search:</label>
+    <div id="searchPosition">
+     
+      <label htmlFor="search"> <Typography variant="h4">Search by Location:</Typography></label>
       <input type="text" name="search" value={search} onChange={handleSearch} />
+      </div>
     </StyledSearch>
   );
 }

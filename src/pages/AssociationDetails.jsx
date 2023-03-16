@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import associationService from "../services/associations.service";
 import { Typography } from "@mui/material";
 
-import associationsService from "../services/associations.service";
+/* import associationsService from "../services/associations.service"; */
 
 
 function associationDetails() {

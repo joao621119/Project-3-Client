@@ -88,9 +88,9 @@ function Profile() {
                       <img class="petImg" src={pet.image} alt="Pet's image" />
                       <Typography variant="h4">{pet.name}</Typography>
                       </Link>
-                      <Typography variant="h4">{pet.gender}</Typography>
+                      <Typography variant="h4">Gender: {pet.gender ? "Male" : "Female"}</Typography>
                       {pet.age && (
-                        <Typography variant="h4">{pet.age}</Typography>
+                        <Typography variant="h4">Age: {pet.age} years old</Typography>
                       )}
                     
                   </div>
