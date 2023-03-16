@@ -65,7 +65,7 @@ function Pets() {
       <SearchPets searchPets={searchPets} />
 
       <div>
-        <StyledButton onClick={() => filterBySpecies(null)}>📍 Show by Location</StyledButton>
+        <StyledButton onClick={() => filterBySpecies(null)}>🐾 All Pets</StyledButton>
         <StyledButton onClick={() => filterBySpecies('dog')}>🐶</StyledButton>
         <StyledButton onClick={() => filterBySpecies('cat')}>🐱</StyledButton>
         <StyledButton onClick={() => filterBySpecies('rabbit')}>🐰</StyledButton>

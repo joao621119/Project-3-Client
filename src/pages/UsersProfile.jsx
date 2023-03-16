@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../context/auth.context";
 import profileService from "../services/profile.service";
-import { Typography } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import { StyledButton } from "../components/styled/Button.styled";
 import { Link } from "react-router-dom";
 import { StyledUserProfile, StyledPetsForAdoption } from "../components/styled/UsersProfile.styled";
@@ -41,27 +41,27 @@ function UsersProfile() {
             </div>
 
             <div>
-              <Typography variant="h4">{profile.name}</Typography>
-              <Typography variant="h4">Gender:{profile.gender}</Typography>
-              <Typography variant="h4">Age: {profile.age}</Typography>
-              <Typography variant="h4">Location: {profile.location}</Typography>
-              <Typography variant="h4">About {profile.description}</Typography>
+              <Typography variant="h4" gutterBottom>{profile.name}</Typography>
+              <Typography variant="h4" gutterBottom>Gender:{profile.gender}</Typography>
+              <Typography variant="h4" gutterBottom>Age: {profile.age}</Typography>
+              <Typography variant="h4" gutterBottom>Location: {profile.location}</Typography>
+              <Typography variant="h4" gutterBottom>About {profile.description}</Typography>
             </div>
 
             {profile.petsForAdoption.length > 0 && (
   <>
-    <Typography>The pets you've put up for adoption:</Typography>
+    <Typography variant="h3">The pets you've put up for adoption:</Typography>
     <StyledPetsForAdoption>
       {profile.petsForAdoption.map((pet) => {
         return (
-          <div key={pet._id}>
+          <Container key={pet._id}>
             <Link to={`/pets/${pet._id}`}>
               <img src={pet.image} alt={pet.name} />
-              <h3>{pet.name}</h3>
-              <p>{pet.species}</p>
+              <Typography variant="h4" gutterBottom>{pet.name}</Typography>
+              <Typography variant="h4" gutterBottom>{pet.species}</Typography>
             </Link>
             <StyledButton variant="outlined">Edit</StyledButton>
-          </div>
+          </Container>
         );
       })}
     </StyledPetsForAdoption>
@@ -76,8 +76,8 @@ function UsersProfile() {
                 <>
                   <Link to={`/associations/${association._id}`} key={association._id}>
                   <img src={association.image} alt="Association's image" />
-                  <h1>{association.name}</h1>
-                  <h2>Service: {association.service}</h2>
+                  <Typography variant="h3">{association.name}</Typography>
+                  <Typography variant="h3">Service: {association.service}</Typography>
                   </Link>
                 </>
               );
